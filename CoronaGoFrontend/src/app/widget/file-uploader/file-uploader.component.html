@@ -1,0 +1,13 @@
+  <div class="input-group custom-file-upload" [ngClass]="{'disabled': disabled}">
+    <input type="text" class="form-control" [(ngModel)]="fileName" *ngIf="!multivalue" [disabled]="disabled" [placeholder]="element.placeholder || ''" />
+    <div class="form-control multi-file-upload p-1" *ngIf="multivalue">
+      <span *ngFor="let file of fileNameArr" [ngClass]="{'hidden': !file}">
+        <span *ngIf="file" ><span [title]="file">{{file.name ? file.name : file.fileName ? file.fileName : file}}</span><i class="fa fa-times" (click)="!disabled && removeFile(file)"></i></span>
+      </span>
+      <span *ngIf="!fileNameArr || !fileNameArr.length" class="placeholder">{{element.placeholder || ''}}</span>
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary btn-sm" [ngClass]="{'p-1': multivalue}" type="button" (click)="uploader.click()" [disabled]="disabled">Upload File</button>
+    </div>
+    <input type="file" id="uploader" (change)="onFileSelected($event)" class="upload-btn" #uploader [attr.multiple]="multivalue" [disabled]="disabled"/>
+  </div>

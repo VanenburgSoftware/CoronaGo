@@ -1,0 +1,21 @@
+<div class="image-carousel" #imgCarousel>
+  <ngb-carousel *ngIf="images" interval="false">
+    <ng-template ngbSlide *ngFor="let image of images">
+      <div class="picsum-img-wrapper">
+        <span class="remove-image" (click)="!disabled && removeImage(image)"><i class="fa fa-trash"></i></span>
+        <a [href]="image" target="_blank" *ngIf="image && image.indexOf('data:') != 0">
+          <img [src]="image" class="img-fluid" />
+        </a>
+        <img [src]="image" *ngIf="image && image.indexOf('data:') == 0" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <span *ngIf="!images || !images.length" class="empty-carousel-image"
+  [ngStyle]="{top: (imgCarousel.offsetHeight/ 2) - (emptyImg.offsetHeight / 2) - 20 + 'px'}">
+    <i class="fa fa-image fa-5x" #emptyImg></i>
+  </span>
+  <button type="button" class="btn btn-secondary btn-sm image-uploader-btn" (click)="carouselUploader.click()" [disabled]="disabled">
+    Add Image
+  </button>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden #carouselUploader [disabled]="disabled" multiple/>
+</div>

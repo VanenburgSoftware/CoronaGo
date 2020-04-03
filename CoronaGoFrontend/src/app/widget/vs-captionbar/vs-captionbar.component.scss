@@ -1,0 +1,141 @@
+.vs-caption-bar {
+  .vs-details-container {
+    height       : 45px;
+    background   : #ffffff;
+    border       : none;
+    border-radius: 5px;
+    box-shadow   : none;
+    overflow     : hidden;
+
+    .vs-detail-block {
+      min-width   : 100px;
+      padding     : 0 10px;
+      border-right: none;
+      position    : relative;
+
+      &::after {
+        content     : '';
+        position    : absolute;
+        border-right: 1px solid #e2e2e2;
+        height      : 50%;
+        right       : 0;
+        top         : 20%;
+      }
+    }
+
+    .vs-detail-content {
+      height     : 25px;
+      width      : 100%;
+      text-align : center;
+      line-height: 25px;
+
+      .label-style {
+        color        : #055aff;
+        font-size    : 13px;
+        font-weight  : 600;
+        max-width    : 200px;
+        border-radius: 3px;
+        padding      : 3px 6px;
+        overflow     : hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .vs-detail-header {
+      height       : 18px;
+      color        : #333333;
+      font-size    : 10px !important;
+      font-family  : "CircularStd";
+      font-weight  : 300;
+      line-height  : 15px;
+      width        : 100%;
+      text-align   : center;
+      border-radius: 3px;
+      border-bottom: 3px solid transparent;
+      margin-bottom: 1px;
+    }
+
+    .vs-detail-header.status {
+      border-bottom: 3px solid #ea9960;
+    }
+
+    &.no-content {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .vs-caption-bar {
+    .vs-details-container {
+      border-radius: 0;
+      display      : flex;
+      flex-wrap    : nowrap;
+      overflow     : auto;
+      overflow-y   : hidden;
+
+      &::-webkit-scrollbar {
+        height: 0;
+        width : 0;
+      }
+
+      &.increased-height {
+        height  : auto;
+        overflow: visible;
+      }
+
+      .show-more-caption {
+        position: absolute;
+        right   : 0;
+        top     : 5px;
+      }
+    }
+  }
+}
+
+/* @media (min-width: 576px) and (max-width: 767.98px) {
+  .vs-caption-bar {
+    .vs-details-container {
+      border-radius: 0;
+    }
+
+    .vs-details-container.no-content {
+      display: none;
+      height : 0px !important;
+      width  : 0px !important;
+    }
+  }
+} */
+
+@media (min-width: 767.98px) {
+
+  .vs-caption-bar {
+    .vs-details-container {
+
+      .vs-detail-block {
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+
+        .vs-detail-header {
+          font-family            : montserrat;
+          text-transform         : uppercase;
+          color                  : #333333;
+          padding-top            : 0;
+          font-size              : 8px;
+          height                 : 22px;
+          display                : flex;
+          justify-content        : center;
+          align-items            : center;
+          letter-spacing         : 0.6px;
+          -webkit-font-smoothing : antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-weight            : bold;
+        }
+      }
+    }
+  }
+}

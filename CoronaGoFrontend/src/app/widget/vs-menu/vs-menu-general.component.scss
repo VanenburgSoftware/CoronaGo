@@ -1,0 +1,83 @@
+@import "../../../sass/widgetVariables";
+/** Menu starts ***/
+.appRoot {
+    --menu-width: 312px;
+    --collapsed-menu-width: 100px;
+    --transition-time: 200ms;
+}
+.vs-menu {
+    line-height: 44px;
+    &.sticky {
+        li.nav-item.has-treeview {
+            .nav-link {
+                padding: 0px 12px 0px 20px !important;
+            }
+        }
+    }
+    &.sticky.collapsed {
+        .nav-label {
+            display: none;
+        }
+        li.nav-item.has-treeview {
+            &.first-level-menu,
+            &.second-level-menu,
+            &.third-level-menu {
+                .nav-link {
+                    place-content: center !important;
+                    padding: 3px 12px 3px 12px !important;
+                    .icon-font {
+                        line-height: 44px;
+                    }
+                    .icon-from-disk {
+                        line-height: 44px;
+                    }
+                    .flyout-menu-caret {
+                        display: none;
+                    }
+                    &.active {
+                        margin-left: 0px !important;
+                        padding-left: 12px !important;
+                    }
+                }
+            }
+        }
+        ul {
+            ul {
+                display: none;
+            }
+            padding: 0px !important;
+            /* .nav-link {
+        padding: 0px !important;
+        transition: padding var(--transition-time) linear;
+        &.active {
+          margin-left: 0px !important;
+          padding-left: 0px !important;
+        }
+      }
+      transition: padding var(--transition-time) linear; */
+        }
+    }
+}
+
+/**
+Styles for page container specific to Menu type
+*/
+
+.sticky-collapsed {
+    /* margin-left: $collapsed-menu-width !important;
+    transition: margin-left var(--transition-time) linear; */
+    &.mobile-main-content{
+        margin-left: 0 !important;
+    }
+}
+
+.sticky-expanded {
+   /*  margin-left: $menu-width !important;
+    transition: margin-left var(--transition-time) linear; */
+    &.mobile-main-content{
+        margin-left: 0 !important;
+    }
+}
+
+
+/** Menu Ends**/

@@ -1,0 +1,7 @@
+<div class="kanban-card-item" [ngClass]="{'expanded': isExpanded}" #kanbanItem>
+  <span class="expand-card" (click)="expandCard()"><i class="fa fa-ellipsis-v"></i></span>
+  <p class="card-content mb-0" *ngFor="let item of itemContent; let index = index;" [ngClass]="{'first-child': index == 0}" >
+    <span [attr.title]="item.element">{{item.element}}</span>
+    <label [attr.title]="item.key | uppercase | translate">{{item.key | uppercase | translate }}</label>
+  </p>
+</div>

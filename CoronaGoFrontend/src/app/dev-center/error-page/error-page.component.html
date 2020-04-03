@@ -1,0 +1,16 @@
+<div class="detail-container list-container">
+    <div class="detail-page-header page-list-title">
+        <span class="detail-page-header-label ">Generation Warnings / Errors</span>
+    </div>
+    <form [formGroup]="form" class="float-right col-md-12">
+        <select formControlName="warning" [(ngModel)]="warning" (change)="onGenerationChange($event)" *ngIf="warnings && warnings.length" class="float-right">
+        <option *ngFor="let warning of warnings" [ngValue]="warning.id">
+          {{ warning.action }} 
+          <div> ( {{ warning.dateTime | date:'medium' }} )</div>
+        </option>
+      </select>
+    </form>
+    <div class="detail-page-content float-left col-md-12">
+        <app-vs-grid [gridConfig]=gridConfig></app-vs-grid>
+    </div>
+</div>

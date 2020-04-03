@@ -1,0 +1,43 @@
+.modal-header {
+    font-family: Montserrat;
+    padding    : 10px;
+
+    .modal-title {
+        font-size: 16px;
+    }
+
+    .close {}
+}
+
+.modal-body {
+    font-family: Montserrat;
+    padding    : 5px 10px;
+    font-size  : 12px;
+}
+
+.modal-footer {
+    font-family: Montserrat;
+    padding    : 5px 10px;
+
+    button {
+        box-shadow      : 0px 0px 5px 0px #cccccc;
+        font-family     : Montserrat;
+        font-size       : 13px;
+        font-weight     : 500;
+        line-height     : 24px;
+        color           : #291e1e !important;
+        background-color: #ffffff;
+        letter-spacing  : 0.5px;
+        border          : 1px solid #93a3ab;
+        box-shadow      : none;
+        border-radius   : 2px !important;
+        font-size       : 12px;
+
+        &:hover,
+        &:focus {
+            background-color: #2c5b5f !important;
+            color           : white !important;
+            box-shadow      : 0px 0px 10px 0px #cccccc;
+        }
+    }
+}

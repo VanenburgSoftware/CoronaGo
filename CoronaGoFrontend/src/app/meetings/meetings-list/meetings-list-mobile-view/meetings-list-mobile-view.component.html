@@ -1,0 +1,21 @@
+<div class="row mobile-row">
+  <div class="row">
+    <div class="col-1 mobile-col-expander text-center p-0"><i class="fa fa-chevron-down expand-row">&nbsp;</i></div>
+    <div class="col-11 main-content pl-0">
+      <div class="row">
+        <div class="col-6" *ngFor="let item of mainContent | keyvalue" [ngClass]="item.value.classes">
+          <span>{{item.value.data}}</span>
+          <label [translate]="item.key | uppercase"></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 inner-content">
+      <div class="row">
+        <div class="col-6" *ngFor="let item of innerContent | keyvalue">
+          <span>{{item.value.data}}</span>
+          <label [translate]="item.key | uppercase"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

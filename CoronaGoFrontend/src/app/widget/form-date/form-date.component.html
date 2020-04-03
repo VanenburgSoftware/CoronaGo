@@ -1,0 +1,42 @@
+<div class="input-group custom-form-date-picker" >
+
+  <input type="text" class="form-control" [placeholder]="getPlaceHolder()" name="dp" #d
+  [(ngModel)]="selectedViewDate"
+  (focus)="showPicker = !showPicker"
+  [disabled]="disabled"
+  autocomplete="off"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary btn-sm fa fa-calendar" (click)="showPicker = !showPicker" type="button" [disabled]="disabled"></button>
+  </div>
+  <dl-date-time-picker
+    class="dl-form-datetime-picker"
+    [startView]="getDateViews().startView"
+    [maxView]="getDateViews().maxView"
+    [minView]="getDateViews().minView"
+    [(ngModel)]="selectedDate"
+    (change)="handleDateChange($event)"
+    [ngStyle]="{display: showPicker ? 'block' : 'none'}"
+    minuteStep="5"
+>
+</dl-date-time-picker>
+<!-- <p-calendar [(ngModel)]="selectedDate"
+  [dateFormat]="format"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  [view]="getViewType(viewType)"
+  [showTime]="showTime"
+  [timeOnly]="isTimeOnly"
+  [placeholder]="getPlaceHolder()"
+  showIcon="true"
+  readonlyInput="true"
+  monthNavigator="true"
+  yearNavigator="true"
+  yearRange="1900:3000"
+  styleClass="form-date-input"
+  (onSelect)="handleDateChange($event)"
+  (onYearChange)="handleYearChange($event)"
+></p-calendar> -->
+
+
+</div>

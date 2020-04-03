@@ -1,0 +1,12 @@
+<label class="custom-image-uploader">
+  <i class="fa fa-image" [ngClass]="{'hide-elem': selectedFileDisplay, 'show-elem': !selectedFileDisplay }">
+    <i class="fa fa-upload upload-icon"></i>
+  </i>
+  
+  <a [href]="selectedFileDisplay" target="_blank" *ngIf="selectedFileDisplay && isFromUrl">
+    <img *ngIf="selectedFileDisplay" [src]="selectedFileDisplay" [ngClass]="{'show-elem': selectedFileDisplay, 'hide-elem': !selectedFileDisplay }" />
+  </a>
+  <img *ngIf="selectedFileDisplay && !isFromUrl" [src]="selectedFileDisplay" [ngClass]="{'show-elem': selectedFileDisplay, 'hide-elem': !selectedFileDisplay }" />
+  <i class="fa fa-trash" [ngClass]="{'show-elem': selectedFileDisplay, 'hide-elem': !selectedFileDisplay }" (click)="!disabled && removeSelectedImage($event)" ></i>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple [disabled]="disabled" />
+</label>

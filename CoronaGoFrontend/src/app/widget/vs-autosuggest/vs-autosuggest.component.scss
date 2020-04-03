@@ -1,0 +1,88 @@
+.filter-wrapper {
+  .form-group {
+    label {
+    }
+    .form-group-inner {
+      width: 100%;
+      height: 25px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      .mul-sel-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        .mul-sel-list-item {
+          display: inline-block;
+          float: left;
+          background: #eaeaea;
+          margin: 2px;
+          span {
+            font-size: 12px;
+            padding-left: 5px;
+          }
+          i {
+            font-style: normal;
+            font-size: 12px;
+            padding: 0 5px;
+            cursor: pointer;
+          }
+          .form-control {
+            width: auto;
+            max-width: 50px;
+          }
+        }
+      }
+      .form-control {
+        border: none;
+        padding: 0;
+        height: 25px;
+        outline: none;
+      }
+    }
+    .form-group-inner.mult-select {
+      min-height: 25px;
+      height: auto;
+    }
+    .form-group-inner.is-disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      * {
+        cursor: not-allowed !important;
+      }
+      input {
+        background: #ccc;
+        display: none;
+      }
+    }
+  }
+  .search-results {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow: auto;
+    .filter-select {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      .filter-select-list {
+        cursor: pointer;
+        p {
+          padding: 5px;
+          margin: 0px;
+          font-size: 12px;
+          input {
+            vertical-align: middle;
+            display: inline-block;
+          }
+          span {
+            vertical-align: middle;
+            display: inline-block;
+          }
+        }
+        p:hover {
+          background: #ccc;
+        }
+      }
+    }
+  }
+}

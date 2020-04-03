@@ -1,0 +1,50 @@
+<div class="detail-container detailcontainer">
+	<div class="page-header-part">
+		<div class="detail-page-header">
+			<span class="detail-page-header-label">{{pagename | translate}}</span>
+			<div class="detail-page-captionbar float-right" *ngIf="!isMobile">
+				<app-vs-captionbar [captionbarConfig]="captionbarconf" (clickAction)="captionbarAction($event)"
+					(callback)="captionBarInitComplete($event)"></app-vs-captionbar>
+			</div>
+			<div class="float-right">
+				<app-vs-actionbar class="row" [actionbarConfig]="workflowActionBarconf"
+					(onBtnClick)="buttonAction($event)" (initComplete)="workflowActionBarInitComplete($event)">
+				</app-vs-actionbar>
+			</div>
+		</div>
+		<div class="detail-page-actionbar">
+			<app-vs-actionbar class="row" [actionbarConfig]="actionBarconf" (onBtnClick)="buttonAction($event)"
+				(initComplete)="actionBarInitComplete($event)"></app-vs-actionbar>
+		</div>
+		<div class="detail-page-captionbar" *ngIf="isMobile">
+			<app-vs-captionbar [captionbarConfig]="captionbarconf" (clickAction)="captionbarAction($event)"
+				(callback)="captionBarInitComplete($event)"></app-vs-captionbar>
+		</div>
+	</div>
+	<div class="detail-page-content ">
+		<div class="detail-page-form patient-details-form">
+			<app-vs-form [formConfig]="formConfig" [formData]="data" [formModalChange]="dataChanged"></app-vs-form>
+		</div>
+	</div>
+	<ng-template #highalert>
+	<div class="high-alert m-2 p-2">
+    <div class="modal-title">Based on your risk assessment, it looks like you are in the high risk group. We will connect you to a physician shortly. In the meantime, we recommend you to follow these steps to ensure your safety.</div>
+    <div class="modal-body">
+		<ul class='high-risk-info'>
+          <li>
+          Avoid leaving your house during this time and interacting with others unless its absolutely necessary
+          </li>
+          <li>
+          Always wear mask and gloves while shopping for essential supplies
+          </li>
+          <li>
+          Wash your hands thoroughly (for about 20 seconds) frequently
+          </li>
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<button (click)="cancelModal()" class="btn btn-primary pge-primary">OK</button>
+	</div>
+	</div>
+	</ng-template>
+</div>

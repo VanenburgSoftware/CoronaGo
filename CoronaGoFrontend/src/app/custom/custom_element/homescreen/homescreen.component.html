@@ -1,0 +1,19 @@
+<div class="home-screen">
+    <div class="header">
+    </div>
+    <div class="call911" (click)="call911()"><span>SOS</span></div>
+    <div class="confirm-call" *ngIf="askConfirmation">
+        <i class="fa fa-times close-call" (click)="askConfirmation = !askConfirmation"></i>
+        <span>Call SOS</span>
+        <span class="btn btn-danger btn-sm" (click)="triggerCall()">Confirm</span>
+    </div>
+    <div class="center-text">
+        <div class="patient-info" *ngIf="patientName">{{patientName}},  {{age}}  -  {{gender}}</div>
+        <div class="status" *ngIf="status" >{{status}}</div>
+    </div>
+    <ul class="tiles">
+        <li *ngFor="let tile of tiles" class="tile {{tile.class}}" (click)="navigateToUrl(tile.path)">
+            <div class="tile-text">{{tile.name}}</div>
+        </li>
+    </ul>
+</div>

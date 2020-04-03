@@ -1,0 +1,47 @@
+.has-search .form-control {
+  padding-left: 2.375rem;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.landing-page {
+  padding-top: 3px;
+  ul {
+    padding-inline-start: 1px;
+    .hospital-info {
+      list-style-type: none;
+      display: flex;
+      padding: 3px;
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgb(110, 105, 234);
+      }
+      .hospital {
+        padding-left: 5px;
+        .hospital-name {
+          padding-top: 5px;
+        }
+        .place {
+          font-size: 11px;
+          color: grey;
+        }
+      }
+      .right-arrow {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import "../../../sass/widgetVariables";
+
+$menu-height: 520px;
+$user-info-container-height: 52px;
+$icon-dimension: 42px;
+$icon-font-size: 32px;
+$icon-color: gray;
+$top-bar-height: 60px;
+
+div.vs-menu {
+  width: $menu-width;
+  position: absolute;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: none;
+  margin-left: -285px;
+  height: $menu-height;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  background-color: $menu-bg;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  font-family: "Montserrat";
+  z-index: 1000;
+
+  .menu-items-container {
+    width: 100%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: $menu-bg;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(#{$menu-height} - 3px);
+    cursor: pointer;
+
+    /*  &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 10px 0px;
+    }*/
+    &::-webkit-scrollbar-track {
+      margin: 10px 0px;
+    }
+    &::-webkit-scrollbar {
+      margin: 10px 0px;
+    }
+    /*
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+      background-color: #ccc;
+    } */
+  }
+}
+
+div.vs-menu.sticky {
+  top: $top-bar-height - 10;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - #{$top-bar-height});
+  max-height: calc(100vh - #{$top-bar-height});
+  margin-left: -20px;
+  border-radius: 0px;
+  box-shadow: none;
+  .menu-items-container {
+    max-height: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
+}
+
+div.vs-menu.non-sticky-left {
+  margin-left: -10px !important;
+}
+div#mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #777;
+  opacity: 0.5;
+}

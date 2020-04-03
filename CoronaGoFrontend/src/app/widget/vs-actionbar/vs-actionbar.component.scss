@@ -1,0 +1,119 @@
+@import "../../../sass/variables";
+
+.vs-actionbar {
+  .btn-toolbar {
+    float: left;
+    padding-right: 5px;
+    padding-top: 0;
+
+    .btn-group {
+      margin-right: 5px;
+
+      button {
+        // padding      : 3px 10px;
+        box-shadow: 0px 0px 5px 0px #cccccc;
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #291e1e !important;
+        background-color: #ffffff;
+        letter-spacing: 0.5px;
+        border: 1px solid #93a3ab;
+        box-shadow: none;
+        border-radius: 2px !important;
+        font-size: 12px;
+
+        &.pge-primary {
+          color: #fff !important;
+        }
+      }
+
+      button:hover,
+      button:focus {
+        background-color: #ff347a !important;
+        color: white !important;
+        box-shadow: 0px 0px 10px 0px #cccccc;
+      }
+    }
+
+    .btn-group.dropdown {
+      margin-right: 0px;
+
+      .dropdown-menu {
+        padding: 2px;
+
+        button {
+          border: 0;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .arrow_back {
+    content: "←";
+  }
+}
+
+.vs-actionbar .btn-group > span:first-child:not(:last-child):not(.dropdown-toggle) .btn,
+.vs-actionbar .btn-group > span:first-child:not(:last-child) .btn {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-right: none;
+}
+
+.vs-actionbar .btn-group > span:last-child:not(:first-child) .btn {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.vs-actionbar .btn-group > span:not(:first-child):not(:last-child):not(.dropdown-toggle) .btn {
+  border-radius: 0;
+}
+
+@media (max-width: 575.98px) {
+  .vs-actionbar {
+    .action-bar-mobile {
+      .btn-toolbar {
+        width: 100%;
+      }
+
+      .btn-group {
+        & > span {
+          button {
+            color: #fff !important;
+
+            &:hover,
+            &:focus {
+              background-color: #8282d8 !important;
+            }
+          }
+
+          &:first-child {
+            button {
+              border-top-left-radius: 5px !important;
+              border-bottom-left-radius: 5px !important;
+            }
+          }
+
+          &:last-child {
+            button {
+              border-top-right-radius: 5px !important;
+              border-bottom-right-radius: 5px !important;
+            }
+          }
+
+          &:not(:last-child) {
+            button {
+              border-right: 1px solid #ffffff !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}

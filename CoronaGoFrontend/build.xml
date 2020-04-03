@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <project name="CreatePackage" default="create-package" basedir=".">
+	<property name="project.name" value="${ProjectName}" />
+	<property name="dist" location="dist"/>
+	
+    <target name="create-package">
+		<echo message="Packing dist folder ..."/>
+		<zip destfile="${dist}/${project.name}.zip" basedir="${dist}/${project.name}" />
+	</target>
+</project>

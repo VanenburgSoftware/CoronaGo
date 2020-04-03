@@ -1,0 +1,80 @@
+<div class="container-fluid" style="min-height: 100vh;" > <!-- *ngIf="!showSpash && !showLogin" -->
+  <div class="row">
+  	<div class="menu-toggle-icon" [ngClass]="{'collapsed-side-menu': isCollapsedMenu}" (click)="toggleLeftMenu()" *ngIf="!isMobile"><i class="fa fa-bars" ></i></div>
+    <div class="col-1 pl-0 pr-0 app-menu-wrap" *ngIf="!isMobile" [ngClass]="{'collapsed-side-menu': isCollapsedMenu}">
+      <div class="app-menu">
+        <!-- <div style="height: 60px; background: #2d4168;">&nbsp;</div> -->
+        <!-- <i class="fa fa-bars" *ngIf="topbarConfig?.menuConfig?.left" style="font-size:24px"
+          (click)="toggleLeftMenu()"></i> -->
+        <!-- <app-vs-menu *ngIf="topbarConfig?.menuConfig?.left" [sticky]="topbarConfig?.menuConfig?.sticky"
+          [menuConfig]='topbarConfig?.menuConfig'>
+        </app-vs-menu> -->
+        <app-vsmenunew [menuConfig]='topbarConfig.menuConfig' *ngIf="topbarConfig?.menuConfig">
+
+        </app-vsmenunew>
+        <div class="app-logo-wrapper">
+          <img class="app-logo" src="../../assets/images/eva_small_logo.svg" title="Powered by EVA"/>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="{'col-11 pl-0 pr-0 app-content-wrap': !isMobile, 'col-12 p-0': isMobile, 'collapsed-side-menu': isCollapsedMenu}">
+      <header>
+        <app-topbar [topbarConfig]='topbarConfig'></app-topbar>
+      </header>
+      <div>
+        <div class="page-container" [ngClass]="{
+          'sticky-expanded':isExpandedMenu && isStickyMenu,
+          'sticky-collapsed':!isExpandedMenu && isStickyMenu,
+          'mobile-main-content': isMobile
+          }">
+          <app-loader></app-loader>
+          <app-notification></app-notification>
+		  <app-vs-tab-new></app-vs-tab-new>
+          <router-outlet></router-outlet>
+          <div class="opened-tabs" *ngIf="!isMobile">
+            <div class="row-wrap">
+              <div class="col-1 openedtablist-wrap">
+                <div class="openedtablist-container" [ngClass]="{'showTabList': isShowTabList}">
+                  <ul class="openedtablist" >
+                    <li class="list-group-item" *ngFor="let tab of tabs">
+                      <span (click)="loadThisTab(tab)" [attr.title]="tab.url">{{tab.label | translate}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <button class="btn" (click)="isShowTabList = !isShowTabList"><i class="fa fa-bars"
+                    aria-hidden="true"></i></button>
+              </div>
+              <div class="col-11 opened-tabs-horz-wrap" id="openedTabsHorzWrap">
+                <ul class="list-group list-group-horizontal">
+                  <li class="list-group-item" *ngFor="let tab of tabs" [ngClass]="{'active': tab.active}">
+                    <span (click)="loadThisTab(tab)" [attr.title]="tab.url">{{tab.label | translate}}</span><i class="fa fa-times"
+                      (click)="removeThisTab(tab)"></i>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-1 move-left-right">
+                <span (click)="move('left')"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                <span (click)="move('right')"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container-fluid p-0" *ngIf="showSpash">
+  <div class="row">
+    <div class="col">
+      <img src="../assets/images/spashScreen.png" alt="Splash Screen" width="100%" />
+    </div>
+  </div>
+</div> -->
+<!-- <div class="container-fluid p-0" *ngIf="showLogin">
+  <div class="row">
+    <div class="col">
+      
+      <app-login-component (googleLogin)="loginUser()"></app-login-component>
+    </div>
+  </div>
+</div> -->

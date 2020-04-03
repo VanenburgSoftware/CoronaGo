@@ -1,0 +1,47 @@
+<ng-container *ngIf="!showReportHistory">
+  <div class="detail-container reports-detail-container">
+    <div class="page-header-part">
+      <div class="detail-page-header">
+        <span class="detail-page-header-label">Reports</span>
+      </div>
+      <div class="detail-page-actionbar">
+        <app-vs-actionbar class="row" [actionbarConfig]="actionBarconf" (onBtnClick)="actionBarAction($event)"
+          (initComplete)="actionBarInitComplete($event)"></app-vs-actionbar>
+      </div>
+    </div>
+    <div class="detail-page-content">
+      <div class="detail-page-form">
+        <app-vs-form [formConfig]="formConfig" [formData]="data" [formModalChange]="dataChanged"></app-vs-form>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="showReportHistory">
+  <div class="detail-container reports-detail-container">
+    <div class="page-header-part">
+      <div class="detail-page-header">
+        <span class="detail-page-header-label">Reports History</span>
+      </div>
+      <div class="detail-page-actionbar">
+        <app-vs-actionbar class="row" [actionbarConfig]="historyActionBarconf" (onBtnClick)="actionBarAction($event)"
+          (initComplete)="actionBarInitComplete($event)"></app-vs-actionbar>
+      </div>
+    </div>
+    <div class="detail-page-content">
+      <div class="row">
+        <div class="col pl-0">
+          <div class="detail-page-form">
+            <app-vs-form [formConfig]="historyFormConfig" [formData]="historyData" [formModalChange]="dataChanged">
+            </app-vs-form>
+          </div>
+        </div>
+        <div class="col">
+          <div>&nbsp;</div>
+          <app-vs-search></app-vs-search>
+        </div>
+      </div>
+
+      <app-vs-grid [gridConfig]=gridConfig></app-vs-grid>
+    </div>
+  </div>
+</ng-container>

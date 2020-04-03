@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ modalheader }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modalformConfig ? closePopup() : closeConfirmPopup()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngIf="modalformConfig">
+    <app-vs-form [formConfig]="modalformConfig" [formData]="modaldata" [formModalChange]="dataChanged"></app-vs-form>
+  </div>
+  <div *ngIf="!modalformConfig">
+    {{ message }}
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark btn-sm"
+    (click)="modalformConfig ? closePopup() : closeConfirmPopup()">Cancel</button>
+  <button type="button" class="btn btn-outline-dark btn-sm" (click)="modalformConfig ? savePopup() : okConfirmPopup()">
+    {{modalformConfig ? 'Save' : 'Ok'}}
+  </button>
+</div>

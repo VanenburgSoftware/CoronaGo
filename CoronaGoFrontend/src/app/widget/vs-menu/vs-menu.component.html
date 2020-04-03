@@ -1,0 +1,14 @@
+<div class="vs-menu" [@fade]="menuState" [ngClass]="{
+  'sticky':sticky,
+  'collapsed':isCollapsed(),
+  'non-sticky-left':isLeftNonStickyMenu()
+  }" *ngIf="hasMenuItems" (mouseenter)="toggleOverlayStickyMenu()"
+  (mouseleave)="toggleOverlayStickyMenu()">
+
+  <ul class="nav flex-column">
+    <app-vs-nav-item class="menu-items-container" [menuItems]="menu"
+      [level]="1" [sticky]="sticky" [menuState]="menuState"
+      (toggle)="toggleMenu()">
+    </app-vs-nav-item>
+  </ul>
+</div>

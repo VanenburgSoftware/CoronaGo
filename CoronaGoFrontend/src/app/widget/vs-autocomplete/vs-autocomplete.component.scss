@@ -1,0 +1,111 @@
+.vs-autocomplete {
+  position: relative;
+  .single-selection {
+    .form-control {
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+      height: 30px;
+    }
+    .fa-caret-down {
+      margin-left: -15px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .multi-select {
+    .form-control {
+      height: auto;
+      min-height: 100px;
+      max-height: 150px;
+      overflow: auto;
+      border-radius: 2px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    ul {
+      li {
+        display: inline-block;
+        font-size: 13px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+        padding-left: 5px;
+        &.multi-select-input {
+          border: none;
+          padding: 0;
+          margin: 0;
+          input {
+            border: none;
+            outline: none;
+            width: 50px;
+            min-width: 50px;
+            max-width: 100%;
+          }
+        }
+        .fa-times {
+          cursor: pointer;
+          padding: 3px;
+          &:hover {
+            background-color: #eaeaea;
+          }
+        }
+      }
+    }
+    &.disabled{
+      background-color: #e9ecef;
+      .form-control{
+        background-color: #e9ecef;
+      }
+    }
+  }
+  .suggestion {
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+    background-color: #ffffff;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 99;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        padding: 2px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        &:hover {
+          background-color: #bfdeff;
+        }
+        .check-box {
+          width: 13px;
+          height: 10px;
+          position: relative;
+          vertical-align: middle;
+          margin-right: 3px;
+          &::after {
+            content: "";
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            vertical-align: middle;
+            margin-top: -3px;
+            background-color: #fff;
+            border: 1px solid #bbb;
+            cursor: pointer;
+          }
+          &:checked::after {
+            content: "\f00c";
+            font-family: FontAwesome !important;
+            color: #73994d;
+            line-height: 10px;
+            font-size: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

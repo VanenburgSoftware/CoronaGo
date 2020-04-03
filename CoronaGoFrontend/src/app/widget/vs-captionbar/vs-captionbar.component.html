@@ -1,0 +1,16 @@
+<div class="vs-caption-bar" [ngClass]="hasModules||hasDetails ? 'vs-green-bg' : 'vs-white-bg'">
+  <div class="d-sm-none d-xs-none d-md-block d-lg-block col-md-12 col-lg-12">
+    <div class="row vs-details-container" [ngClass]="{'increased-height': incHeight, 'no-content': !cDetails?.length}">
+      <!-- <button class="btn btn-default show-more-caption" (click)="incHeight = !incHeight" *ngIf="isMobile && cDetails.length">
+          <i class="fa fa-ellipsis-v"></i>
+      </button> -->
+      <div *ngFor="let detail of cDetails" class="vs-detail-block" [class.d-none]="detail.hidden == true" >
+        <div class="vs-detail-content" [attr.title]="getTitle(detail.content)" (click)="captionClick(detail)">
+          <span class="label-style" [ngClass]="[detail.contentClass?detail.contentClass:'']"
+            [innerHTML]="detail.content"></span>
+        </div>
+        <div class="vs-detail-header" [ngClass]="detail.headerClass" translate><span>{{detail.header}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>

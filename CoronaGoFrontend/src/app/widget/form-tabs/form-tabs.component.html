@@ -1,0 +1,8 @@
+<ngb-tabset [destroyOnHide]="false">
+  <ngb-tab [title]="tab.label" *ngFor="let tab of tabconfig">
+    <ng-template ngbTabContent>
+        <app-vs-form [formConfig]="tab.form" [formData]="tabdata" [formModalChange]="dataChanged"></app-vs-form>
+    </ng-template>
+  </ngb-tab>
+
+</ngb-tabset>

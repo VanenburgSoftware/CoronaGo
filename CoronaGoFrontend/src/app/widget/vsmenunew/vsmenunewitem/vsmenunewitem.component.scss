@@ -1,0 +1,133 @@
+.nav-item {
+  a {
+    color          : #fff;
+    text-decoration: none;
+    font-size      : 10px;
+    display        : inline-block;
+    padding        : 15px 5px;
+    width          : 100%;
+
+    &.active,
+    &:hover {
+      color     : #fff;
+      background: #435882;
+    }
+
+    a {
+      white-space  : nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .icon-class {
+    display  : block;
+    font-size: 18px;
+  }
+
+  .label-class {
+    display    : block;
+    font-size  : 11px;
+    font-family: Montserrat;
+  }
+
+  &.sub-level {
+    &:hover {
+      background: #eaecf0;
+    }
+
+    a {
+      padding     : 10px 20px;
+      padding-left: 15%;
+      display     : inline-block;
+      white-space : nowrap;
+
+      &.active,
+      &:hover {
+        color     : #5a5b5c !important;
+        background: #eaecf0 !important;
+      }
+    }
+
+    &.active {
+      a {
+        color     : #5a5b5c !important;
+        background: #eaecf0 !important;
+      }
+    }
+
+    .icon-class {
+      display      : inline-block;
+      padding-right: 10px;
+      font-size    : 13px;
+      color        : #5a5b5c;
+    }
+
+    .label-class {
+      display  : inline-block;
+      font-size: 13px;
+      color    : #5a5b5c;
+    }
+  }
+
+  &.active {
+    a {
+      color     : #435882 !important;
+      background: #fff !important;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .nav-item {
+    a {
+      text-align : left;
+      line-height: 16px;
+      padding    : 10px;
+      white-space: nowrap;
+
+      span {
+        display    : inline-block;
+        line-height: 16px;
+
+        &.label-class {
+          padding-left: 10px;
+          color       : #fff;
+        }
+      }
+    }
+
+    &.sub-level {
+      &:hover {
+        background: #eaecf0;
+      }
+
+      a {
+        padding     : 10px 20px;
+        padding-left: 15%;
+        display     : inline-block;
+        color       : #ffffff;
+        background  : #4e638e;
+
+        &.active,
+        &:hover {
+          color     : #ffffff;
+          background: #4e638e;
+        }
+      }
+
+      .icon-class {
+        display      : inline-block;
+        padding-right: 10px;
+        font-size    : 13px;
+        color        : #ffffff;
+      }
+
+      .label-class {
+        display  : inline-block;
+        font-size: 13px;
+        color    : #5a5b5c;
+      }
+    }
+
+  }
+}

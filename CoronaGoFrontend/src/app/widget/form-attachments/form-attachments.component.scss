@@ -1,0 +1,178 @@
+@import '../../../sass/variables';
+
+.table-wrapper {
+  overflow-x: auto;
+  width     : 100%;
+}
+
+.form-attachments {
+  tbody {
+    display   : block;
+    max-height: 200px;
+    height    : auto;
+    overflow  : auto;
+    font-size : 12px;
+  }
+
+  thead,
+  tbody tr {
+    display     : table;
+    width       : 100%;
+    table-layout: fixed;
+  }
+
+  thead {
+    width    : calc(100% - 1.3em);
+    font-size: 13px;
+  }
+
+  .attachment-checkbox {
+    width: 50px;
+  }
+
+  .form-attachments-btn {
+    width        : 175px;
+    margin-bottom: 5px;
+  }
+}
+
+/**** base table styles ****/
+thead {
+  margin-bottom: 5px;
+
+  tr {
+    th {
+      border-top      : 1px solid #cfd6dd;
+      border-bottom   : 1px solid #cfd6dd;
+      background-color: #edf0f5;
+      opacity         : 0.9;
+      color           : #334f5a;
+      font-family     : Montserrat;
+      font-size       : 12px;
+      line-height     : 15px;
+      letter-spacing  : 0.5px;
+      padding         : 7px 10px;
+
+      &:first-child {
+        border-left              : 1px solid #cfd6dd;
+        border-top-left-radius   : $borderRadius;
+        border-bottom-left-radius: $borderRadius;
+      }
+
+      &:last-child {
+        border-right              : 1px solid #cfd6dd;
+        border-top-right-radius   : $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+      }
+    }
+  }
+}
+
+tbody {
+  border-radius: $borderRadius;
+  border       : 1px solid #cfd6dd;
+
+  tr {
+    td {
+      font-family  : Montserrat;
+      padding      : 5px 10px;
+      white-space  : nowrap;
+      overflow     : hidden;
+      text-overflow: ellipsis;
+      color        : #7a7f8a;
+
+      &.created-by {
+        text-transform: capitalize;
+      }
+
+      &.file-name {
+        i {
+          padding-right: 5px;
+          display      : inline-block;
+        }
+
+        a {
+          text-decoration: underline;
+          cursor         : pointer;
+          color          : #7a7f8a;
+        }
+      }
+    }
+
+    &:nth-child(odd) {
+      td {}
+    }
+
+    &:nth-child(even) {
+      td {
+        background-color: #f5f5f5;
+      }
+    }
+
+    &:hover {
+      td {
+        background-color: #cfe4f3;
+
+        &.delete-attachment {
+          i {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+td.delete-attachment,
+th.delete-attachment {
+  width     : 50px;
+  text-align: center;
+  font-size : 15px;
+  color     : #6c757d;
+  cursor    : pointer;
+
+  i {
+    display: none;
+  }
+}
+
+/**** base table styles ****/
+.form-group {
+  position: relative;
+}
+
+.no-resize {
+  resize: none;
+}
+
+.modal-header {
+  background-color: #e8f1f7;
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  .close {
+    padding       : 10px;
+    vertical-align: middle;
+    margin        : -4px;
+    outline       : none;
+
+    &:hover {
+      background-color: #cfe4f3;
+    }
+  }
+}
+
+.error-border {
+  border       : 1px solid red;
+  display      : inline-block;
+  border-radius: $borderRadius;
+  width        : 100%;
+}
+
+.error-text {
+  position : absolute;
+  font-size: 12px;
+  right    : 0;
+}

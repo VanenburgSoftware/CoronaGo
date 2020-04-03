@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+* {
+    font-family: Roboto, sans-serif;
+}
+
+.appRoot {
+    max-width: 1800px;
+    margin: 0px auto;
+    display: block;
+    height: 100%;
+}
+
+th,
+td {
+    white-space: nowrap;
+}
+
+div.dataTables_wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+#webpack-dev-server-client-overlay{
+	display:none;
+}

@@ -1,0 +1,26 @@
+<div class="link-input-wrapper" [ngClass]="{'disabled': disabled}">
+  <div class="input-group" [ngClass]="{'error-border': urlError}">
+
+    <input type="text" class="form-control " [(ngModel)]="link" [disabled]="!editing || disabled"
+      *ngIf="editing && !multivalue"  />
+    <textarea class="form-control " [(ngModel)]="link" [disabled]="!editing || disabled"
+      *ngIf="editing && multivalue"></textarea>
+
+    <p class="form-control display-link" *ngIf="!editing && !multivalue"><a [href]="link" target="_blank">{{link}}</a></p>
+
+    <p class="form-control display-link multi-link" *ngIf="!editing && multivalue">
+      <a *ngFor="let linkItem of link" [href]="linkItem" target="_blank">{{linkItem}}</a>
+    </p>
+
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary btn-sm fa fa-pencil" type="button" (click)="makeEditable()"
+        *ngIf="!editing" [disabled]="disabled"></button>
+      <button class="btn btn-outline-secondary btn-sm fa fa-check" type="button" (click)="finishEditing()"
+        *ngIf="editing" [disabled]="disabled"></button>
+    </div>
+  </div>
+  <div *ngIf="urlError" class="col error-div">
+    <div class="error">Please provide valid url</div>
+  </div>
+
+</div>

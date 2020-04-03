@@ -1,0 +1,24 @@
+<div class="filter-wrapper auto-suggest">
+    <div class="form-group">
+        <label for="{{ _id }}">{{ label }}</label>
+        <div class="form-group-inner" [ngClass]="{'mult-select': multiple == true || multiple == 'true', 'is-disabled': isDisabled}">
+            <ul class="mul-sel-list" *ngIf="multiple == true || multiple == 'true'">
+                <li *ngFor="let item of selItems" class="mul-sel-list-item">
+                    <span>{{ formatDisplayName(item) }}</span><i (click)="deleteItem(item)">X</i>
+                </li>
+                <li class="mul-sel-list-item input-holder">
+                    <input type="text" class="form-control" id="{{ _id }}" placeholder="{{ placeholder }}" *ngIf="multiple == true || multiple == 'true'" [formControl]="queryField" [disabled]="isDisabled" (keydown)="handleKeyDown()" (focus)="handleFocus()" />
+                </li>
+            </ul>
+            <input type="text" class="form-control" id="{{ _id }}" placeholder="{{ placeholder }}" *ngIf="multiple != true && multiple != 'true'" [formControl]="queryField" [disabled]="isDisabled" (keydown)="handleKeyDown()" (focus)="handleFocus()" />
+        </div>
+    </div>
+
+    <div class="search-results" *ngIf="showDropdown" (scroll)="handleScroll($event)">
+        <ul class="filter-select">
+            <li *ngFor="let result of results" class="filter-select-list" (click)="selectItem(result)">
+                <p><input type="checkbox" class="check-box" (click)="handleCheckboxChange($event, result)" *ngIf="hasCheckbox == 'true'" [checked]="isChecked(result)" /> <span>{{formatDisplayName(result) }}</span></p>
+            </li>
+        </ul>
+    </div>
+</div>

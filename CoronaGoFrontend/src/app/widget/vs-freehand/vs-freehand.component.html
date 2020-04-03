@@ -1,0 +1,36 @@
+<div class="canvas-wrapper row">
+  <div class="col-1 pl-0 pr-0 text-right canvas-tool-bar" *ngIf="toolbar" >
+    <div class="btn-group-vertical" role="group" aria-label="Save and Upload">
+      <!-- <button type="button" class="btn btn-sm" (click)="convertDrawingToImageString($event)"
+        [ngClass]="{ 'btn-primary': isDrawingStarted, 'btn-secondary' : !isDrawingStarted }"
+      ><i
+          class="fa fa-save" aria-hidden="true"></i></button> -->
+      <!-- <button type="button" class="btn btn-primary btn-sm" (click)="loadDataToCanvas()"><i class="fa fa-upload"
+          aria-hidden="true"></i></button> -->
+
+      <button type="button" class="btn btn-secondary btn-sm" (click)="changeTool('pencil')"><i class="fa fa-pencil"
+          aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="changeTool('eraser')"><i class="fa fa-eraser"
+          aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="changeTool('text')"><i class="fa fa-font"
+          aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="toggleDrawings()"><i class="fa fa-image"
+          aria-hidden="true"></i>
+        <ul class="list-group drawings" *ngIf="showDrawings">
+          <li class="list-group-item p-1" *ngFor="let image of imageList" (click)="loadImage(image)"><img [src]="image" /></li>
+        </ul>
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="clearCanvas()"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+    </div>
+
+  </div>
+  <div class="pl-0 pr-0 inner-wrap canvas-inner-wrap" [ngClass]="{'col-11': toolbar, 'col-12': !toolbar}">
+    <button type="button" class="btn btn-secondary btn-sm clear-canvas-inner" (click)="clearCanvas()" *ngIf="!toolbar"><i class="fa fa-times"
+      aria-hidden="true" ></i></button>
+    <canvas class="canvas" #canvas [ngClass]="tool"></canvas>
+    <input type="text" class="form-control text-input" (blur)="handleInputBlur($event)"
+      (keydown)="handleKeyDown($event)" #textInput />
+  </div>
+
+</div>

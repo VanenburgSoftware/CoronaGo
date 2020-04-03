@@ -1,0 +1,587 @@
+<div [ngClass]="{'inline-form': isInlineForm}">
+  <form [formGroup]="form" class="form vs-form form-data" [ngClass]="layoutData.class" name="vs_form" novalidate
+    (submit)="submitForm(form)" action="javascript:;" #formRef="ngForm">
+    <div class="form-section p-0" [ngClass]="[element.columnsWidth?'col-sm-'+element.columnsWidth:'']"
+      *ngFor="let element of layoutData.groups">
+      <div *ngIf="element.items.length" class="group-section">
+        <ng-container class="group-section" [ngClass]="element.class"
+          *ngTemplateOutlet="formTemplate; context: {element: element}"></ng-container>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #formTemplate let-element="element">
+  <ng-container>
+    <div [hidden]="element.hidden" class="form-element-wrapper"
+      [ngClass]="[element.name ? element.name : '', element.label ? 'card-section' :'', element.groupHeaderClass.indexOf('hidden') > -1 ? 'no-border' : '']">
+      <div class="group-header clearfix col-md-12"
+        [ngClass]="[element.label?'card-header-class':'',element.groupHeaderClass?element.groupHeaderClass:'', element.collapsible?'collapsible-header': '', element.isCollapsed?'collapsed':'', (!!element.help_text)?'has-help':'']"
+        (click)="(!element.collapsible || (element.isCollapsed = !element.isCollapsed))">
+        <span class="group-header-label" [ngClass]="element.groupLabelClass" translate>{{element.label}}</span>
+        <span class="pull-right header-icon fa"
+          [ngClass]="[element.groupIconClass?element.groupIconClass:'', !element.isCollapsed?'fa-chevron-up':'' , element.isCollapsed?'fa-chevron-down': '' ]"
+          *ngIf="element.collapsible"></span>
+        <i class="fa fa-info-circle pull-right field-help-icon form-help-popover" aria-hidden="true"
+          *ngIf="element.help_text" [hidden]="vsFormData.help == false || vsFormData.footerhelp == true"
+          [attr.data-content]="element.help_text"></i>
+      </div>
+      <div [hidden]="element.isCollapsed" [ngClass]="[!element.isCollapsed ? 'form-elements-group row m-0' : '']">
+        <div class="form-section-subgroup" *ngFor="let element of element.items"
+          [ngStyle]="{'clear': element.nextRow ? 'both': 'none'}"
+          [ngClass]="[element.items && element.items.length?'section-element':'',element.padSpace?element.padSpace:'',element.groupContentClass?element.groupContentClass:'', element.hidden?'hide-element':'', !element.hidden?'show-element': '', element.columnsWidth?'col-sm-'+element.columnsWidth:'']">
+          <div *ngIf="element.items && element.items.length" class="group-section"
+            ng-init="isCollapsible(element, $parent.element)">
+            <ng-container *ngTemplateOutlet="formTemplate; context: {element: element}"></ng-container>
+          </div>
+
+          <div *ngIf="!(element.items && element.items.length)" class="full-width"
+            [ngClass]="[!!formData[element.name]?'element-has-data': '', !formData[element.name]?'element-no-data': '', (element.disableRights || element.disabled)?'elem-disabled' : '', element.elementClass?element.elementClass:'']">
+            <div *ngIf="element.name" class="col-md-12"
+              [ngClass]="[element.columnsWidth?'col-sm-'+element.columnsWidth:'', element.padSpace?element.padSpace:'']"
+              [formGroup]="form">
+              <ng-container [ngSwitch]="element.type">
+
+                <ng-template [ngSwitchCase]="'tab'" class="form-tabs">
+                  <ngb-tabset [destroyOnHide]="true" (tabChange)="handleTabChange($event)" class="form-tabs"
+                    [ngClass]="{'nav-fill': isMobile}" [activeId]="element.activeId">
+                    <ngb-tab *ngFor="let tab of element.tabs" [id]="tab.name" [disabled]="tab.disabled">
+                      <ng-template ngbTabTitle>
+                        <span class="tab-title">{{tab.label | uppercase | translate}}</span>
+                        <span class="tab-sub-title">{{tab.infolabel}}</span>
+                      </ng-template>
+                      <ng-template ngbTabContent>
+                        <ng-container *ngTemplateOutlet="formTemplate; context: {element: tab}"></ng-container>
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="'text'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <input [type]="element.type" [formControlName]="element.name" class="form-control "
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                        [formAttributes]="element.formAttributes" [placeholder]="element.placeholder || ''" />
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'number'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">                       
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <!-- <input [formControlName]="element.name"  class="form-control "
+                      [customMin]="element.validations?.min_value" [customMax]="element.validations?.max_value" numeric
+                      numericType="decimal" [mandatoryCondition]="element.validations?.mandatoryCondition"
+                      [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}" /> -->
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <app-input-number [formControlName]="element.name" numericType="decimal"
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': (formRef.submitted && form.get(element.name).invalid)}"
+                        [displayFormat]="element.format" [element]="element">
+                      </app-input-number>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'currency'">
+                  <div class="form-group form-section-subgroup currency-control {{element.name}}"
+                    [ngClass]="{'row': isInlineForm}">
+                    <label class="field-label" [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div class="input-group"
+                        [ngClass]="{'error-border': formRef.submitted && (form.get(getFieldName('currency', element.name).code).invalid || form.get(getFieldName('currency', element.name).value).invalid)}">
+                        <div class="input-group-prepend col-3 p-0">
+                          <select class="form-control text-center currency-code-control"
+                            [formControlName]="getFieldName('currency', element.name).code">
+                            <option *ngFor="let currency of element.currencies"
+                              [selected]="getSelectedOption(getFieldName('currency', element.name).code, element.currencies)">
+                              {{currency}}</option>
+                          </select>
+                        </div>
+                        <input type="text" [formControlName]="getFieldName('currency', element.name).value"
+                          class="form-control col-9 currency-value-control"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [placeholder]="element.placeholder || ''">
+                      </div>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+
+
+                  </div>
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="getSwitchCaseForDate(element.type)">
+                  <div class="form-group form-section-subgroup {{element.name}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class=" vs-item-required text-danger"
+                    *ngIf="isRequired(element.validations, element)">*</span>
+                    <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                      [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                      tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <app-form-date [formControlName]="element.name" [format]="element.format"
+                        [fromDate]="element.validations?.range?.from" [toDate]="element.validations?.range?.to"
+                        [viewType]="element.type" [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [formAttributes]="element.formAttributes"
+                        class="form-radio-element"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}">
+                      </app-form-date>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'daterange'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <app-date-range [formControlName]="element.name" [format]="element.format"
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}">
+                      </app-date-range>
+                    </div>
+                    <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'textarea'">
+                  <div class="form-group  form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <textarea [formControlName]="element.name" class="form-control textarea" [rows]="element.rows"
+                        [cols]="element.cols" [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                        [placeholder]="element.placeholder || ''"></textarea>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'select'">
+                  <div class="form-group  form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <select [formControlName]="element.name" [name]="element.name" class="form-control "
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [formAttributes]="element.formAttributes"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid, 'placeholder': !form.get(element.name).value}">
+                        <option value="" disabled selected hidden>{{element.placeholder || ''}}</option>
+                        <option *ngFor="let option of element.options" [value]="option.value">{{option.label}}</option>
+                      </select>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'radio'">
+                  <div class="form-group  form-section-subgroup radio {{element.name}}"
+                    [ngStyle]="{'display': !isInlineForm ? 'block' : 'flex'}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div class="row m-0"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}">
+                        <div *ngFor="let option of element.values" class="d-inline-block pr-3 radio-buttons">
+                          <label class="form-radio-element">
+                            <input type="radio" [formControlName]="element.name" class="custom mt-2"
+                              [mandatoryCondition]="element.validations?.mandatoryCondition" [value]="option.value"
+                              [id]="option.value">
+                            <span class="field-label pl-3"> {{option.label}}</span>
+                          </label>
+                        </div>
+                      </div>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'checkbox'">
+                  <div class="form-group  form-section-subgroup checkbox {{element.name}}"
+                    [ngStyle]="{'display': !isInlineForm ? 'block' : 'flex'}" [ngClass]="{'row': isInlineForm}">
+                    <label [ngClass]="{'col-sm-4 col-form-label': isInlineForm}"></label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div class="row m-0">
+                        <div class="d-inline-block pr-3">
+                          <label [for]="element.label" class="form-checkbox-element">
+                            <input type="checkbox" [formControlName]="element.name" class="custom mt-2"
+                              [id]="element.name" [mandatoryCondition]="element.validations?.mandatoryCondition">
+                            <label [for]="element.name" class="field-label pl-3">
+                              <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                                *ngIf="isRequired(element.validations, item)">*</span>
+                              <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                                [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                                tooltipClass="f-info-bubble-content"></i>
+                            </label>
+                          </label>
+                          <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'checkboxgroup'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <checkbox-group [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition">
+                          <checkbox *ngFor="let option of element.values" [value]="option.value" [option]="option" [class]="element.class">
+                          </checkbox>
+                        </checkbox-group>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'image'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-image-uploader [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [objectKey]="element.objectKey" [fieldName]="element.name"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                          class="image-uploader">
+                        </app-image-uploader>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'carousel'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-image-carousel [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [objectKey]="element.object_key" [uploadUrl]="element.upload_url"
+                          [downloadUrl]="element.download_url" [fieldName]="element.name"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}">
+                        </app-image-carousel>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'link'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-input-link [formControlName]="element.name" [multivalue]="element.multivalue"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                          class="custom-upload-element" [element]="element">
+                        </app-input-link>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'file'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-file-uploader [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [objectKey]="element.objectKey" [fieldName]="element.name" [multivalue]="element.multivalue"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                          class="custom-upload-element" [element]="element">
+                        </app-file-uploader>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'autosuggest'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-vs-autocomplete [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                          class="custom-upload-element" [url]="element.url" [options]="element.options"
+                          [displayField]="element.displayField" [valueField]="element.valueField" [id]="element.id"
+                          [placeholder]="element.placeholder" [isDisabled]="element.disabled"
+                          [isMultiple]="element.multiple" [hasCheckbox]="element.hasCheckbox"
+                          [searchOnFocus]="element.searchOnFocus" [infiniteScroll]="element.infiniteScroll"
+                          [valueType]="element.value_type">
+                        </app-vs-autocomplete>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+                <ng-template [ngSwitchCase]="'email'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <input [type]="element.type" [formControlName]="element.name" class="form-control "
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                        [placeholder]="element.placeholder || ''" />
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'password'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <input [type]="element.type" [formControlName]="element.name" class="form-control "
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                        [placeholder]="element.placeholder || ''" />
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'attachments'">
+                  <div class="form-group form-section-subgroup {{element.name}}">
+                    <label [for]="element.name" class="field-label">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                    </label>
+                    <app-form-attachments [uploadUrl]="element.uploadUrl" [listUrl]="element.listUrl">
+                    </app-form-attachments>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'customelement'">
+                  <div class="custom-component">
+                    <app-custom-element [component]="element.component"
+                      [currentForm]="form">
+                    </app-custom-element>
+                  </div>
+                </ng-template>
+
+
+                <ng-template [ngSwitchCase]="'childList'">
+                  <div class="form-group form-section-subgroup child-list-label {{element.name}}">
+                    <label [for]="element.name" class="field-label">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                    </label>
+                  </div>
+
+                  <div class="custom-component {{element.name}}">
+
+                    <div class="row">
+                      <div class="col">
+                        <app-vs-actionbar [actionbarConfig]="element.actionBarconf"
+                          (onBtnClick)='element.actionBarAction($event)'
+                          (initComplete)='element.actionBarInitComplete($event)'></app-vs-actionbar>
+                      </div>
+                      <div class="col">
+                        <app-vs-search></app-vs-search>
+                      </div>
+                    </div>
+                    <app-vs-grid [gridConfig]="element.gridConfig"></app-vs-grid>
+                  </div>
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="'scanner'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <div>
+                        <app-vs-scanner [formControlName]="element.name"
+                          [mandatoryCondition]="element.validations?.mandatoryCondition"
+                          [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                          class="custom-upload-element"></app-vs-scanner>
+                        <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="'freehand'">
+                  <div class="form-group form-section-subgroup {{element.name}}" [ngClass]="{'row': isInlineForm}">
+                    <label [for]="element.name" class="field-label"
+                      [ngClass]="{'col-sm-4 col-form-label': isInlineForm}">
+                      <span>{{element.label | translate }}</span><span class="vs-item-required text-danger"
+                        *ngIf="isRequired(element.validations, element)">*</span>
+                      <i class="fa fa-info f-info-bubble" *ngIf="element.infoBubble"
+                        [ngbTooltip]="element.infoBubble || ''" triggers="click:blur"
+                        tooltipClass="f-info-bubble-content"></i>
+                    </label>
+                    <div [ngClass]="{'col-sm-8': isInlineForm}">
+                      <app-vs-freehand [formControlName]="element.name"
+                        [mandatoryCondition]="element.validations?.mandatoryCondition"
+                        [ngClass]="{'error-border': formRef.submitted && form.get(element.name).invalid}"
+                        [toolbar]="element.toolbar" class="custom-upload-element"></app-vs-freehand>
+                      <small class="form-text text-muted sub-label">{{element.subLabel | translate}}</small>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'formbutton'">
+                  <button class="btn btn-secondary {{element.class}}" (click)="handleFormBtnClick(element)" >{{element.label | translate }}</button>
+                </ng-template>
+
+
+
+                <div class="col error-div">
+                  <div class="error" *ngIf="formRef.submitted && form.get(element.name)?.invalid">
+                    <div *ngIf="form.get(element.name).errors.required">This field is required</div>
+                    <div *ngIf="form.get(element.name).errors.maxlength">Maximum length is
+                      {{element.validations?.max_length}}
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.minlength">Minimum length is
+                      {{element.validations.min_length}}
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.minvalue">Minimum value is
+                      {{element.validations?.min_value}}
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.maxvalue">Maximum value is
+                      {{element.validations?.max_value}}
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.email">Please enter a valid email</div>
+                    <div *ngIf="!form.get(element.name).errors.required">
+                      <div *ngIf="form.get(element.name).errors.customMin"> Minimum required number is
+                        {{element.validations?.min_value}}
+                      </div>
+                      <div *ngIf="form.get(element.name).errors.customMax"> Maximum number can be
+                        {{element.validations?.max_value}}
+                      </div>
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.pattern">
+                      Value not matching the pattern {{form.get(element.name).errors.pattern.requiredPattern}}
+                    </div>
+                    <div *ngIf="form.get(element.name).errors.mandatoryCondition">
+                      Mandatory because {{getFieldLabel(getFieldLabelForMandatoryCondition(element.validations?.mandatoryCondition).lhs  )}}
+                      {{getFieldLabelForMandatoryCondition(element.validations?.mandatoryCondition).operator}}
+                      '{{getFieldLabelForMandatoryCondition(element.validations?.mandatoryCondition).rhs}}'
+                    </div>
+
+                  </div>
+                </div>
+                <button type="submit" class="d-none" #submitButton>Submit</button>
+
+                <!-- add here -->
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

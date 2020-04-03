@@ -1,0 +1,39 @@
+<div id="{{dtOptions.id}}" class="grid-wrapper">
+    <div class="vs_grid_loader" *ngIf="showLoading">Loading...</div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="width:100%">
+        <thead *ngIf="dtOptions.complexHeader">
+            <tr class="complex-grid-header">
+                <th *ngFor="let header of dtOptions.complexHeader; let i = index" [attr.colspan]="header.colspan"
+                    [ngClass]="{'emptyHeader': !header.label}" class="complex-header-{{i}}" translate>{{header.label}}
+                </th>
+            </tr>
+            <tr class="vs-grid-header">
+                <th *ngFor="let col of dtOptions.columns; let i = index" [ngClass]="col.sortDirection"
+                    [attr.colorder]="i" translate>
+                    {{col.title}}
+                </th>
+            </tr>
+        </thead>
+
+    </table>
+    <!-- <div class="list-snapshot">
+        <div class="detail-page-form">
+            <app-vs-form [formConfig]="snapshotFormConfig" [formData]="snapshotData" [formModalChange]="dataChanged"></app-vs-form>
+        </div>
+    </div> -->
+</div>
+<context-menu class="vs-grid-context-menu ">
+    <ng-template *ngFor="let item of currentRowOptions " contextMenuItem [visible]="!item.hide "
+        [enabled]="!item.disabled " [divider]="item.divider " (execute)="onRowMenuOptionClick(e, item) "
+        ngClass="{ 'disabled': item.disabled} ">
+        <span>
+            <i class="row_menu_option_icon fa {{item.icon}} " *ngIf="item.icon && item.iconFont == 'font_awesome'"></i>
+            <i class="row_menu_option_icon tiny material-icons"
+                *ngIf="item.icon && item.iconFont == 'material'">{{item.icon}}</i>
+            <i class="row_menu_option_icon tiny app-dir-icons" *ngIf="item.icon && item.iconFont == 'app_directory'">
+                <img src="./assets/images/{{item.icon}}" />
+            </i>
+            {{item.label | translate}}
+        </span>
+    </ng-template>
+</context-menu>

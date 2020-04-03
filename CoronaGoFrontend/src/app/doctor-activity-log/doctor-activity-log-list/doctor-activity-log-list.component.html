@@ -1,0 +1,58 @@
+<div class="detail-container list-container">
+  <div class="page-header-part">
+    <div class="detail-page-header page-list-title">
+      <span class="detail-page-header-label">{{pageName | translate}}</span>
+
+     <!--  <ng-container *ngIf="!isMobile">
+        <button class="btn btn-default create-btn" (click)="createRecord()">New</button>
+        <button class="btn btn-default more-btn" (click)="showAdditionalListButtons = !showAdditionalListButtons"><i
+            class="fa fa-ellipsis-v"></i></button>
+        <div class="detail-page-actionbar page-list-action inline-block list-action-bar"
+          *ngIf="showAdditionalListButtons">
+          <app-vs-actionbar class="row list-vs-actions" [actionbarConfig]="actionBarconf"
+            (onBtnClick)='actionBarAction($event)' (initComplete)='actionBarInitComplete($event)'></app-vs-actionbar>
+        </div>
+      </ng-container> -->
+      <button class="btn btn-primary btn-sm show-search-mobile"
+        [ngClass]="{'mob-search-shown': isMobile && showSearchForMobile}" *ngIf="isMobile"
+        (click)="showSearchForMobile = !showSearchForMobile"><i class="fa fa-search"></i></button>
+      <div class="advanced-filter float-right" *ngIf="!isMobile || (isMobile && showSearchForMobile)">
+        <div class="inline-block">
+         <!--  <app-vs-search [searchconfig]="searchconfig"></app-vs-search> -->
+        </div>
+        <div class="grid-kanban-toggle inline-block" *ngIf="!isMobile">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-sm btn-secondary active" (click)="toggleKanbanView('list')"
+              [ngClass]="{'active': showGrid}">
+              <i class="fa fa-list"></i>
+            </label>
+            <label class="btn btn-sm btn-secondary" (click)="toggleKanbanView('kanban')"
+              [ngClass]="{'active': showKanban}">
+              <i class="fa fa-columns"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="detail-page-actionbar page-list-action" *ngIf="isMobile">
+      <app-vs-actionbar class="row" [actionbarConfig]="actionBarconf" (onBtnClick)='actionBarAction($event)'
+        (initComplete)='actionBarInitComplete($event)'></app-vs-actionbar>
+    </div>
+  </div>
+  <div class="custom-layout" *ngIf="showKanban">
+    <app-vs-kanban [data]="kanbanData" [fieldMap]="kanbanFields" [options]="kanbanOptions"></app-vs-kanban>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="form-group">
+        <label for="doctorLogDate">Select Date</label>
+        <input type="date" class="form-control" id="meetingDate" aria-describedby="activitylog"
+          (change)="handleDateChange($event)" #meetingDate>
+      </div>
+    </div>
+  </div>
+  <div class="detail-page-content" [ngStyle]="{'display': showKanban ? 'none' : 'block'}">
+    <app-vs-grid [gridConfig]=gridConfig></app-vs-grid>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<input class="form-control form-control-sm" 
+  [(ngModel)]="number" 
+  [customMin]="customMin" 
+  [customMax]="customMax"
+  (focus)="onFocus($event)" 
+  (blur)="onBlur($event)" 
+  (keydown)="onKeyDown($event)" 
+  [disabled]="disabled"
+  [placeholder]="element.placeholder || ''" 
+  [mask]="displayFormat"/>

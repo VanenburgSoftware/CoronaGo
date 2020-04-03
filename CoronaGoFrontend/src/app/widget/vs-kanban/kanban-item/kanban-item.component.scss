@@ -1,0 +1,55 @@
+.kanban-card-item {
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  .expand-card {
+      position: absolute;
+      right: 0px;
+      z-index: 999;
+      cursor: pointer;
+      padding: 3px 10px;
+      &:hover {
+          color: #999;
+          background: #ccc;
+      }
+  }
+  p {
+    font-size: 12px;
+    padding-bottom: 5px;
+    width: 50%;
+    display: inline-block;
+    label {
+      display: block;
+      margin: 0;
+      padding-right: 10px;
+      font-size: 10px;
+      margin-top: -3px;
+      color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    span {
+      display: block;
+      color: #333333;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &:first-child {
+        width: 100%;
+    }
+  }
+  &.expanded{
+      height: auto;
+  }
+  .card-content{
+      &:first-child {
+          width: 100%;
+      }
+      &.first-child {
+        width: 100%;
+      }
+  }
+}

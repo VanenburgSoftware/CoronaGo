@@ -1,0 +1,17 @@
+<div class="global-tab" [ngStyle]="tabHeight">
+  <ul class="nav nav-tabs first-level">
+    <li class="nav-item first-level-item" *ngFor="let tab of tabConfig; last as l" [ngClass]="{'show-submenu': (tab.active || l)}" >
+      <app-vs-tab-new-item class="tab-fl" [tab]="tab" [tabConfig]="tabConfig" 
+      [id]="tab.id"
+      [parentId]="tab.parentId"
+      *ngIf="tab.tab"
+      (click)="handleTabClick(tab, tabConfig)"></app-vs-tab-new-item>
+
+      <ul class="nav nav-tabs second-level" *ngIf="tab.subTabs?.length">
+        <li class="nav-item second-level-item" *ngFor="let stab of tab.subTabs" >
+          <app-vs-tab-new-item class="tab-sl" [tab]="stab" [tabConfig]="tab" [tabParentConfig]="tabConfig" (click)="handleSubTabClick(stab, tab, tabConfig)"></app-vs-tab-new-item>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

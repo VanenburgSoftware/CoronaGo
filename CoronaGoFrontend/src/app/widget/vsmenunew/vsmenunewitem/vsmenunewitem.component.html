@@ -1,0 +1,7 @@
+<div class="nav-item nav-menu-item" [ngClass]="{'sub-level': menuLevel != 1, 'active': isActive(menu)}" [id]="menu.id" (click)="handleMenuClick($event, menu)">
+  <a [routerLink]="menu.path" [queryParams]="{ m: menu.tabLevel}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  #menuRouter>
+    <span class="icon-class"><i [class]="getIconClass(menu)"></i></span>
+    <span class="label-class" i18n-ngbTooltip [ngbTooltip]="menu.displayName" [placement]="'top'" container="body"
+      [disableTooltip]='true' #t="ngbTooltip" appIsEllipsisActive translate>{{menu.displayName | uppercase | translate}}</span>
+  </a>
+</div>

@@ -1,0 +1,33 @@
+<div class="vs-global-menu" [ngClass]="{'mobile-menu-open': isMenuOpen}">
+  <span class="close-menu-arrow" *ngIf="isMobile" (click)="closeMenu()"><i class="fa fa-arrow-left"></i></span>
+  <ul class="list-group main-menu">
+    <li class="list-group-item" *ngFor="let menu of menuConfig.menuItems; let index = index;"
+      (mouseenter)="handleMouseEnter($event)" (mouseleave)="handleMouseLeave($event)">
+
+      <app-vsmenunewitem [menu]="menu" menuLevel="1"></app-vsmenunewitem>
+      <div class="submenu-wrap first-child" *ngIf="menu.subMenus?.length">
+        <ul class="list-group submenu one">
+
+          <ng-container *ngFor="let fsMenu of menu.subMenus">
+            <li class="list-group-item" *ngIf="!fsMenu.tab">
+              <app-vsmenunewitem [menu]="fsMenu" menuLevel="2"></app-vsmenunewitem>
+              <div class="submenu-wrap" *ngIf="fsMenu.subMenus?.length">
+                <ul class="list-group submenu one">
+
+                  <ng-container *ngFor="let ssMenu of fsMenu.subMenus">
+                    <li class="list-group-item" *ngIf="!ssMenu.tab">
+                      <app-vsmenunewitem [menu]="ssMenu" menuLevel="3"></app-vsmenunewitem>
+                    </li>
+                  </ng-container>
+
+                </ul>
+              </div>
+            </li>
+          </ng-container>
+
+        </ul>
+      </div>
+    </li>
+
+  </ul>
+</div>

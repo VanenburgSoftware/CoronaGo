@@ -1,0 +1,56 @@
+<li *ngFor="let menuItem of menuItems;
+  let first=first;let index=index;" class="nav-item has-treeview" [ngClass]="{
+  'first-menu':checkForFirstElement(first,level),
+  'sticky':sticky,
+  'first-level-menu':level===1,
+  'second-level-menu':level===2,
+  'third-level-menu':level===3,
+  'active': menuItem.isCollapsed
+  }">
+    <a class="nav-link d-flex align-items-center" *ngIf="hasSubMenus(menuItem)" (click)="loadNextLevelMenuAndDoAction(menuItem,$event)" [ngClass]="{'active': menuItem.isCollapsed}">
+        <i class="icon-font" [ngClass]="setIconClasses(menuItem)" [ngStyle]="{
+      'color':menuItem.iconColor,
+      'background-image':'url(' + getIconImage(menuItem) + ' )'
+      }">
+      {{getIconLabelForMaterialIcons(menuItem)}}
+    </i>
+        <span class="nav-label" i18n-ngbTooltip [ngbTooltip]="menuItem.displayName" [placement]="'top'" container="body" [disableTooltip]='true' #t="ngbTooltip" appIsEllipsisActive>
+      {{menuItem.displayName | translate | titlecase}}
+    </span>
+        <i class="fa fa-angle-down flyout-menu-caret ml-auto icon-font" aria-hidden="true" *ngIf="menuItem?.subMenus?.length">
+    </i>
+    </a>
+    <a class="nav-link d-flex align-items-center" *ngIf="(!hasSubMenus(menuItem)
+    && hasPath(menuItem))" [routerLink]="menuItem.path" [queryParams]="{ m: menuItem.tabLevel}" [routerLinkActive]="['active']" (click)="closeNonstickyMenu()">
+        <i class="icon-font" [ngClass]="setIconClasses(menuItem)" [ngStyle]="{
+      'color':menuItem.iconColor,
+      'background-image':'url(' + getIconImage(menuItem) + ' )'
+      }">
+      {{getIconLabelForMaterialIcons(menuItem)}}
+    </i>
+        <span class="nav-label" i18n-ngbTooltip [ngbTooltip]="menuItem.displayName" [placement]="'top'" container="body" [disableTooltip]='true' #t="ngbTooltip" appIsEllipsisActive>
+      {{menuItem.displayName | translate | titlecase }}
+    </span>
+        <i class="fa fa-angle-down flyout-menu-caret ml-auto icon-font" aria-hidden="true" *ngIf="menuItem?.subMenus?.length">
+    </i>
+    </a>
+    <a class="nav-link d-flex align-items-center" *ngIf="(!hasSubMenus(menuItem)
+    && hasLink(menuItem))" [href]="menuItem.link" target="_blank" (click)="closeNonstickyMenu()">
+        <i class="icon-font" [ngClass]="setIconClasses(menuItem)" [ngStyle]="{
+      'color':menuItem.iconColor,
+      'background-image':'url(' + getIconImage(menuItem) + ' )'
+      }">
+      {{getIconLabelForMaterialIcons(menuItem)}}
+    </i>
+        <span class="nav-label" i18n-ngbTooltip [ngbTooltip]="menuItem.displayName" [placement]="'top'" container="body" [disableTooltip]='true' #t="ngbTooltip" appIsEllipsisActive>
+      {{menuItem.displayName | translate | titlecase }}
+    </span>
+        <i class="fa fa-angle-down flyout-menu-caret ml-auto icon-font" aria-hidden="true" *ngIf="menuItem?.subMenus?.length">
+    </i>
+    </a>
+    <hr *ngIf="menuItem.separator" class="separator" />
+    <ul class="nav flex-column nav-treeview" *ngIf="menuItem?.subMenus?.length" [ngbCollapse]="!menuItem.isCollapsed">
+        <app-vs-nav-item [menuItems]="menuItem?.subMenus" [level]="level+1" [sticky]="sticky" [menuState]="menuState" (toggle)="emitEventForToggle()">
+        </app-vs-nav-item>
+    </ul>
+</li>

@@ -1,0 +1,101 @@
+<div class="form-attachments">
+  <div class="btn-group form-attachments-btn">
+    <button type="button" class="btn btn-secondary btn-sm" (click)="addAttachments($event, attachFile, 'file')"
+      [disabled]="isAddAttachmentDisabled">Add
+      File(s)</button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="addAttachments($event, attachLink, 'link')"
+      [disabled]="isAddAttachmentDisabled">Add Link</button>
+    <!-- <button type="button" class="btn btn-light btn-sm" (click)="removeAttachments($event)"
+      [disabled]="!selectedItems.length">Delete</button> -->
+  </div>
+  <table class="table dataTable">
+    <thead #attachThead [ngStyle]="getHeaderWidth(attachTbody)">
+      <tr>
+        <th>Title</th>
+        <th>Uploaded By</th>
+        <th>Uploaded On</th>
+        <th>Description</th>
+        <th class="delete-attachment"></th>
+      </tr>
+    </thead>
+    <tbody #attachTbody>
+      <tr *ngFor="let item of listData" [id]="item.id">
+        <td class="file-name">
+          <i class="{{getClassFromFileName(item)}}"></i>
+          <a target="_blank" href="/{{apiHost}}/attachments/download/{{item.id}}">{{item.actual_file_name}}</a>
+        </td>
+        <td class="created-by" [title]="item.created_by">{{getNameFromEmail(item.created_by)}}</td>
+        <td>{{item.created_time | date: 'dd-MMM-yyyy'}}</td>
+        <td>{{item.file_description}}</td>
+        <td class="delete-attachment" (click)="removeAttachments(item)"><i class="fa fa-trash"></i></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<ng-template #attachFile let-modal class="attachment-modal">
+  <div class="modal-header pt-1 pb-1">
+    <h4 class="modal-title" id="modal-basic-title">Add File(s)</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" #attachmentForm="ngForm">
+      <div class="form-group">
+        <label for="file" class="field-label">
+          <span>Upload File<span class="text-danger">*</span></span>
+        </label>
+        <div>
+          <app-file-uploader formControlName="file" class="custom-upload-element"
+            [ngClass]="{'error-border': formSubmitted && form.get('file').invalid}">
+          </app-file-uploader>
+        </div>
+        <div class="text-danger error-text" *ngIf="formSubmitted && form.get('file').invalid">File is mandatory</div>
+      </div>
+      <div class="form-group">
+        <label class="field-label">
+          <span>Description</span>
+        </label>
+        <textarea formControlName="description" class="form-control no-resize"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark" (click)="saveAttachment(modal)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #attachLink let-modal class="attachment-modal">
+  <div class="modal-header pt-1 pb-1">
+    <h4 class="modal-title" id="modal-basic-title">Add File(s)</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="linkForm" #linkUploadForm="ngForm">
+      <div class="form-group">
+        <label for="link" class="field-label">
+          <span>Add Link<span class="text-danger">*</span></span>
+        </label>
+        <div>
+          <app-input-link formControlName="link" class="custom-upload-element"
+            [ngClass]="{'error-border': linkFormSubmitted && linkForm.get('link').invalid}">
+          </app-input-link>
+        </div>
+        <div class="text-danger error-text" *ngIf="linkFormSubmitted && linkForm.get('link').invalid">Link is mandatory
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="field-label">
+          <span>Description</span>
+        </label>
+        <textarea formControlName="description" class="form-control no-resize"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark" (click)="saveAttachment(modal)">Save</button>
+  </div>
+</ng-template>

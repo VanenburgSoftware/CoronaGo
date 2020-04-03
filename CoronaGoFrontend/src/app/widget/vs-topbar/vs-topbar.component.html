@@ -1,0 +1,71 @@
+<div class="app-topbar" [ngClass]="{'pl-0 pr-0': isMobile}">
+    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-4 app-topbar-left" [ngClass]="{'mobile-menu': isMobile}">
+        <div class="app-menu" *ngIf="isMobile">
+            <i class="fa fa-bars" *ngIf="topbarConfig?.menuConfig?.left" style="font-size:24px"
+                (click)="toggleLeftMenu()"></i>
+            <!-- <app-vs-menu *ngIf="topbarConfig?.menuConfig?.left" [sticky]="topbarConfig?.menuConfig?.sticky" [menuConfig]='topbarConfig?.menuConfig'>
+            </app-vs-menu> -->
+            <app-vsmenunew [menuConfig]='topbarConfig?.menuConfig' [isMenuOpen]="isMobileMenuOpen">
+
+            </app-vsmenunew>
+        </div>
+        <!-- <img class="app-logo" src="../../assets/images/logo.png" /> -->
+        <div class="app-name d-none d-sm-block d-md-block" translate> CoViFi </div>
+        <div class="d-md-none hidden-md-up app-short-name" translate>
+            CoViFi </div>
+
+    </div>
+    <div class="d-md-none d-lg-none d-sm-none mobile-settings">
+        <i class="fa fa-gear" (click)="isMobileMenuShow = !isMobileMenuShow"></i>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 app-topbar-right pl-0 pr-0 d-none d-sm-block d-md-block"
+        [ngClass]="{'mobile-settings-menu-show' : isMobileMenuShow}">
+        <!-- <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 app-topbar-quick-jump">
+        </div> -->
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 app-topbar-user pl-0 pr-0">
+            <div class="gearMenu float-right">
+                <i class="fa fa-ellipsis-v app-ellipsis-v" *ngIf="topbarConfig?.menuConfig?.left === false"
+                    style="font-size:24px" (click)="toggleRightMenu()"></i>
+                <app-vs-menu *ngIf="isRightMenu()" [sticky]="topbarConfig?.menuConfig?.sticky"
+                    [menuConfig]='topbarConfig?.menuConfig'>
+                </app-vs-menu>
+            </div>
+            <!--<span class="app-topbar-user-image float-right">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </span>-->
+            <!-- <div ngbDropdown class="d-inline-block dropdown float-right">
+                <div id="extScripts" ngbDropdownToggle>
+                    <i class="fa fa-ellipsis-v"></i>
+                </div>
+                <ul ngbDropdownMenu aria-labelledby="extScripts" class="dropdown-menu
+                scripts-dropdown">
+                    <li class="dropdown-item">
+                        <div class="collaboration-wrapper">
+                            <div id="vsCollaboration"></div>
+                        </div>
+                    </li>
+                    <li class="dropdown-item">
+                        <button class="btn btn-default error-report-btn btn-sm" (click)="openIssueReporter()"><i class="fa fa-ticket" aria-hidden="true"></i> <span>Log JIRA Ticket</span></button>
+                    </li>
+                </ul>
+            </div> -->
+            <span class="hidden-xs app-topbar-user-name float-right">{{ topbarConfig?.data?.userName || '' }}</span>
+            <span class="hidden-xs app-topbar-help float-right" translate>
+                <i class="fa fa-question-circle-o app-help-circle" style="font-size:24px"></i>
+                HELP
+            </span>
+            <div ngbDropdown class="d-inline-block dropdown app-lang-cont float-right" *ngIf="topbarConfig?.langConfig">
+                <div id="langDropdown" ngbDropdownToggle>
+                    <span [className]="'flag-icon flag-icon-'+ selectedLang.flagIcon"></span> {{selectedLang.label}}
+                </div>
+                <ul ngbDropdownMenu aria-labelledby="langDropdown" class="dropdown-menu
+                lang-dropdown">
+                    <li *ngFor="let lang of topbarConfig.langConfig" (click)="onLanguageSwitch(lang)">
+                        <span [className]="'flag-icon flag-icon-'+ lang.flagIcon"></span> {{lang.label}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

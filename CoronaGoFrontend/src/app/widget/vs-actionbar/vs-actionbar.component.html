@@ -1,0 +1,66 @@
+<div class="vs-actionbar">
+    <button class="btn btn-primary show-sec-btn" (click)="toggleMobileButtons()"
+        *ngIf="isMobile && secondaryButtons?.length">
+        <i class="fa fa-ellipsis-v"></i>
+    </button>
+    <button type="button" class="btn btn-primary create-btn-mob" *ngIf="isMobile" (click)="createRecordMobile()">
+        <span class="fa fa-plus"></span>
+    </button>
+    <div *ngIf="!isMobile || (showSec || actionbarConfig.showMobilePrimary)" [ngClass]="{'action-bar-mobile': isMobile}" [@fade]="mobBtnState">
+        <div class="btn-toolbar primary" [ngClass]="{'btn-primary-mobile': isMobile}">
+            <div class="btn-group" role="group" *ngFor="let pButton of primaryButtons">
+                <span *ngFor="let button of pButton" class="{{button.class}}">
+                    <button type="button" *ngIf="!button.dropdown" class="btn btn-primary {{button.class}}"
+                        [ngClass]="{'d-none': button.show == false}" [disabled]="button.permission === false"
+                        (click)="handleButtonClick(button)" translate>
+                        <span class="action_bar_button_icon fa {{button.icon}} "
+                            *ngIf="button.icon && button.iconFont == 'font_awesome'"></span>
+                        <span class="action_bar_button_icon tiny material-icons"
+                            *ngIf="button.icon && button.iconFont == 'material'">{{button.icon}}</span>
+                        <span class="action_bar_button_icon tiny app-dir-icons"
+                            *ngIf="button.icon && button.iconFont == 'app_directory'">
+                            <img src="./assets/images/{{button.icon}}" />
+                        </span>{{ button.label }}
+                    </button>
+                    <div class="btn-group" ngbDropdown role="group" *ngIf="button.dropdown">
+                        <button class="btn btn-primary" ngbDropdownToggle translate>{{button.label}}</button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <button ngbDropdownItem *ngFor="let dbtn of button.dropdown"
+                                (click)="handleButtonClick(dbtn)" translate>{{dbtn.label}}</button>
+                        </div>
+                    </div>
+                </span>
+            </div>
+
+
+        </div>
+
+        <div class="btn-toolbar secondary" [ngClass]="{'btn-sec-mobile': isMobile}" *ngIf="showSec">
+            <div class="btn-group" role="group" *ngFor="let sButton of secondaryButtons">
+                <span *ngFor="let button of sButton">
+                    <button type="button" *ngIf="!button.dropdown" class="btn btn-primary {{button.class}}"
+                        [ngClass]="{'d-none': button.show == false}" [disabled]="button.permission == false"
+                        (click)="handleButtonClick(button)" translate>
+                        <span class="action_bar_button_icon fa {{button.icon}} "
+                            *ngIf="button.icon && button.iconFont == 'font_awesome'"></span>
+                        <span class="action_bar_button_icon tiny material-icons"
+                            *ngIf="button.icon && button.iconFont == 'material'">{{button.icon}}</span>
+                        <span class="action_bar_button_icon tiny app-dir-icons"
+                            *ngIf="button.icon && button.iconFont == 'app_directory'">
+                            <img src="./assets/images/{{button.icon}}" />
+                        </span>
+                        {{ button.label }}
+                    </button>
+                    <div class="btn-group" ngbDropdown role="group" *ngIf="button.dropdown">
+                        <button class="btn btn-primary" ngbDropdownToggle translate>{{button.label}}</button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <button ngbDropdownItem *ngFor="let dbtn of button.dropdown"
+                                (click)="handleButtonClick(dbtn)" translate>{{dbtn.label}}</button>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>

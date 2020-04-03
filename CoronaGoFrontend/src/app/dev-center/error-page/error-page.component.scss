@@ -1,0 +1,18 @@
+:host ::ng-deep .error-type-warning {
+    background: #FFEB3B;
+    letter-spacing: 1px;
+    color: #673AB7 !important;
+}
+
+:host ::ng-deep .error-type-error {
+    background-color: #f1584dfa;
+    letter-spacing: 1px;
+}
+
+select[formcontrolname="warning"],
+select[formcontrolname="warning"] option {
+    font-size: 14px;
+    font-family: monospace;
+    padding: 3px 10px 3px 0px;
+    margin: 15px 15px 0px 15px;
+}

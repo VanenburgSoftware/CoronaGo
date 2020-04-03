@@ -1,0 +1,17 @@
+<div class="scheduler-wrapper">
+  <h5>Select Time Slot</h5>
+  <ul class="llist-group  llist-group-horizontal">
+    <li class="llist-group-item" *ngFor="let slot of timeSlots">
+      <button type="button" class="btn btn-default" 
+      [ngClass]="{'btn-success': isSelected(slot)}" 
+      (click)="selectTime($event, slot)" 
+      [id]="getId(slot)"
+      [disabled]="isDisabled(slot)"
+      >
+        <span>{{slot[0]}}</span>
+        <span>-</span>
+        <span>{{slot[1]}}</span>
+      </button>
+    </li>
+  </ul>
+</div>

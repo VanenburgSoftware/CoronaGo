@@ -1,0 +1,71 @@
+<div class="kanban-view-wrapper row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-8 kanban-header">
+        Kanban Board
+      </div>
+      <div class="col-4 text-right">
+        <div class="inline-block">
+          <div class="form-group row default-filter">
+            <label for="groupSelector" class="col-sm-5 col-form-label p-0 text-center">Group By</label>
+            <div class="col-sm-7 p-0">
+              <select class="form-control" id="groupSelector" (change)="handleGroupChange($event)"
+                [(ngModel)]="groupBy">
+                <option *ngFor="let item of groupOptions" [translate]="getTranslatable(item)" [value]="item"></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="inline-block">
+          <div class="form-group row default-filter">
+            <label for="laneSelector" class="col-sm-5 col-form-label p-0 text-center">Lane</label>
+            <div class="col-sm-7 p-0">
+              <select class="form-control" id="laneSelector" (change)="handleLaneChange($event)" [(ngModel)]="laneBy">
+                <option *ngFor="let item of laneOptions" [translate]="getTranslatable(item)" [value]="item"></option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-0">
+    <!--  <div class="row">
+      <div class="col" *ngFor="let lane of lanes">
+        <h6>{{lane}}</h6>
+      </div>
+    </div> -->
+    <div class="row ml-0 mr-0 groups" *ngFor="let item of groupMap">
+
+      <p class="col-12 collapse-header" (click)="toggleGroupVisibility(item)"
+        [ngClass]="{'hide-header': item == 'None'}">
+        <span class="record-count">{{getRecordCount(groupByMap[item])}}</span>
+        {{item}}
+        <i class="fa float-right" [ngClass]="{'fa-caret-down': showGroup[item], 'fa-caret-up': !showGroup[item]}"></i>
+      </p>
+      <div class="kanban-lane-wrapper">
+        <div class="lane col pl-0 pr-0" *ngFor="let lane of lanes; let index = index;"
+          [ngClass]="{'hide-group': !showGroup[item]}"
+          [ngStyle]="{'background': getRandomColor(lane, index, 'lighten')}">
+          <h6 [ngStyle]="{'background': getRandomColor(lane, index)}">{{lane}}</h6>
+          <div class="card-list-content drop-location" cdkDropList [id]="getId(item, lane)"
+            [cdkDropListData]="getDropListData(item, lane)" [cdkDropListConnectedTo]="getConnectedTo(item, lane, lanes)"
+            (cdkDropListDropped)="addToList($event)">
+
+
+            <div class="p-2 m-2 border card-l" *ngFor="let card of groupByMap[item][lane]; let index = index;" cdkDrag>
+              <app-kanban-item [card]="card" [fieldMap]="fieldsMap" [template]="options.template" [cardId]="index"
+                [columns]="options.gridColumns">
+              </app-kanban-item>
+
+              <div *cdkDragPlaceholder class="drop-preview"> Drop Here </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

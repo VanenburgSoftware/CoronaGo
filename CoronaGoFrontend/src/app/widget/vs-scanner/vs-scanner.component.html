@@ -1,0 +1,17 @@
+<!-- <div class="scanner-wrapper">
+  <button class="btn toggle-scan" [ngClass]="{'btn-primary': !scanEnabled, 'btn-danger': scanEnabled}"
+    (click)="toggleScan()"><i class="fa fa-camera" aria-hidden="true"></i></button>
+  <zxing-scanner class="scanner" [formats]="allowedFormats" [enable]="scanEnabled"
+    (scanSuccess)="scanSuccessHandler($event)" (scanError)="scanErrorHandler($event)"
+    (scanFailure)="scanFailureHandler($event)" (scanComplete)="scanCompleteHandler($event)"></zxing-scanner>
+</div> -->
+
+<div class="scanner-wrapper">
+  <button class="btn toggle-scan" [ngClass]="{'btn-primary': !scanEnabled, 'btn-danger': scanEnabled}"
+    (click)="toggleScan()"><i class="fa fa-camera" aria-hidden="true"></i></button>
+  <barcode-scanner-livestream class="scanner" type="code_128" (valueChanges)="onValueChanges($event)" (started)="onStarted">
+  </barcode-scanner-livestream>
+  <div [hidden]="!barcodeValue">
+    {{barcodeValue}}
+  </div>
+</div>

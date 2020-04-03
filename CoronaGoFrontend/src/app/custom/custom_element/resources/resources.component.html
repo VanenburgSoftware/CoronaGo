@@ -1,0 +1,7 @@
+<div class="resources-page">
+<ul>
+    <li *ngFor="let resource of resources " class="resource-info">
+        <a class="icon col-xs-2" [href]="resource.link" target="_blank"> <span>{{resource.name}}</span></a>       
+    </li>
+</ul>
+</div>

@@ -1,0 +1,5 @@
+<div class="nav-item global-tab-item" [ngClass]="{'sub-level': tab.tabLevel != 1}">
+  <a [routerLink]="tab.path" [queryParams]="{ m: tab.tabLevel}" class="nav-link" 
+  [ngClass]="{'active': checkIfActive(tab)}"
+  >{{tab.displayName | translate}}</a>
+</div>

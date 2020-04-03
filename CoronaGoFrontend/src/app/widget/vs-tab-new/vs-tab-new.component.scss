@@ -1,0 +1,146 @@
+.global-tab {
+    position      : relative;
+    font-family   : montserrat;
+    letter-spacing: 0.6px;
+    // border-bottom : 1px solid #ddd;
+    height        : 80px;
+    transition    : height .4s;
+
+    .first-level {
+        width           : 100%;
+        background-color: #ffffff;
+
+        .first-level-item {
+            a {
+                font-size     : 14px;
+                font-family   : montserrat;
+                letter-spacing: 0.6px;
+                color         : #666;
+                position      : relative;
+                padding       : 10px 10px;
+
+                &:hover {
+                    border-color : transparent;
+                    background   : none;
+                    padding      : inherit 10px;
+                    border-bottom: 2px solid #f7cd82;
+                    margin-bottom: -2px;
+                }
+
+                &.active {
+                    border-color    : transparent;
+                    background-color: transparent;
+                    border-bottom   : 2px solid orange;
+                    color           : #000;
+
+                    &::after {
+                        border-top  : 5px solid #ffa500;
+                        border-left : 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        content     : "";
+                        position    : absolute;
+                        bottom      : -5px;
+                        left        : calc(50% - 5px);
+                        z-index     : 91;
+                    }
+                }
+            }
+
+            .second-level {
+                position        : absolute;
+                background-color: #ffffff;
+                display         : none;
+                z-index         : 9;
+                margin-top      : 2px;
+                left            : 0px;
+                width           : 100%;
+                height          : 35px;
+
+
+                .second-level-item {
+                    padding-right: 12px;
+                    padding-left : 12px;
+                    margin-right : 10px;
+                    position     : relative;
+
+                    a {
+                        font-size: 13px;
+                        padding  : 6px 10px;
+                    }
+                }
+            }
+
+            &.show-submenu {
+
+                .second-level {
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .global-tab {
+        .first-level {
+            overflow  : auto;
+            overflow-y: hidden;
+            flex-wrap : nowrap;
+
+            &::-webkit-scrollbar {
+                width : 10px;
+                height: 1px;
+            }
+
+            .first-level-item {
+                padding-left : 2px;
+                padding-right: 2px;
+                margin-right : 5px;
+
+                a {
+                    white-space: nowrap;
+                    color      : #575666;
+                    font-weight: 500;
+
+                    &.active,
+                    &:hover {
+                        color: #f69000;
+                    }
+                }
+
+                .nav-item {
+                    margin-bottom: 0;
+                }
+
+                .second-level {
+                    overflow  : auto;
+                    overflow-y: hidden;
+                    flex-wrap : nowrap;
+
+                    &::-webkit-scrollbar {
+                        width : 0px;
+                        height: 0px;
+                    }
+
+                    .second-level-item {
+                        padding-left : 2px;
+                        padding-right: 2px;
+                        margin-right : 5px;
+
+                        a {
+                            white-space: nowrap;
+                            color      : #575666;
+                            font-weight: 500;
+
+                            &.active,
+                            &:hover {
+                                color: #f69000;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

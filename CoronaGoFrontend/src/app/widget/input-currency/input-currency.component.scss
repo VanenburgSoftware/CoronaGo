@@ -1,0 +1,9 @@
+@import '../../../sass/variables';
+
+.form-control{
+  height: 40px;
+}
+input.form-control{
+  border-top-right-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+}

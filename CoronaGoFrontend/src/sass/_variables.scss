@@ -1,0 +1,19 @@
+/*----------------------------------------Bootstrap Variables-----------------------------------------------------*/
+
+//Fonts
+$font-family-base: "montserrat";
+$top-bar-background-color: #0266bd;
+$selected-tab-line-color: #38545f;
+$button-hover-color: #2c5b5f;
+$spinner-color: #38545f;
+$borderRadius: 4px;
+$page-container-color: #ffffff;
+$mobile-primary-btn-color: #ff8b8b;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;

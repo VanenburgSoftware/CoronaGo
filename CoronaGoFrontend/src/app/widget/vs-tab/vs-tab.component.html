@@ -1,0 +1,12 @@
+<div class="vs-tab">
+  <div class="">
+    <ul class="nav nav-pills nav-stacked tab-items"  [ngClass]="this.tabConfig.level">
+      <li *ngFor="let tab of tabdata" role="presentation" routerLinkActive="active" (click)="tabClick(tab)"
+        [class.d-none]="tab.show == false" [class.active]="tab.active" [class.disabled]="tab.disabled"><a
+          href="javascript:void(0);" [routerLink]='tab.link' [queryParams]="{m: level}" translate>{{tab.label}}</a></li>
+    </ul>
+  </div>
+  <div class="container col-md-12 p-0">
+    <router-outlet></router-outlet>
+  </div>
+</div>

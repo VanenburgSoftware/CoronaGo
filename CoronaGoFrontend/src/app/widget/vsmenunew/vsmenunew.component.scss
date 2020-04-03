@@ -1,0 +1,154 @@
+.vs-global-menu {
+  height          : 100%;
+  background-color: #5557df;
+
+  // padding-top: 60px;
+  .main-menu {
+    background-color: inherit;
+
+    .list-group-item {
+      background-color: inherit;
+      color           : #94979b;
+      padding         : 0px;
+      text-align      : center;
+      cursor          : pointer;
+      border          : none;
+
+      .submenu-wrap {
+        //display : none;
+        position  : absolute;
+        left      : 100px;
+        top       : 0px;
+        box-shadow: 2px 3px 5px #c6d0e4;
+
+        .submenu {
+
+          .list-group-item {
+            background-color: #f4f5f7;
+            color           : #5a5b5c;
+            border-radius   : 0px;
+            text-align      : left;
+            border          : none;
+            max-width       : 100%;
+
+            &:hover {
+              color: #000;
+            }
+
+            a {
+              font-size     : 14px;
+              color         : #5a5b5c;
+              padding-top   : 7px;
+              padding-bottom: 7px;
+              padding-left  : 20px;
+              display       : inline-block;
+            }
+          }
+        }
+
+        .submenu-wrap {
+          position  : relative;
+          left      : 0;
+          width     : auto;
+          top       : 0;
+          box-shadow: none;
+
+          li {
+            border      : none;
+            padding-left: 20px;
+
+
+            a {
+              font-size     : 14px;
+              color         : #5a5b5c;
+              padding-top   : 7px;
+              padding-bottom: 7px;
+              padding-left  : 20px;
+              display       : inline-block;
+            }
+          }
+        }
+
+        &.first-child::content {
+          max-height   : 400px;
+          // min-height: 100px;
+          height       : auto;
+          overflow     : hidden;
+          overflow-y   : auto;
+          background   : #f4f5f7;
+          // border    : 1px solid #ccc;
+        }
+      }
+
+      &:hover {
+        color: #fff;
+        /* .submenu-wrap {
+          display: block;
+        } */
+      }
+    }
+  }
+
+  .submenu-wrap.first-child {
+    overflow          : hidden;
+    -webkit-transition: width .2s;
+    /* For Safari 3.1 to 6.0 */
+    transition: width .2s;
+    width     : 0px;
+    opacity   : 0;
+
+    &.active {
+      width  : 300px;
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .vs-global-menu {
+    position  : absolute;
+    z-index   : -1;
+    width     : 0;
+    opacity   : 0;
+    left      : 0;
+    transition: all 0.3s ease-in-out;
+    top       : -10px;
+
+    .close-menu-arrow {
+      color       : #fff;
+      padding-left: 20px;
+      display     : block;
+      background  : #2d4168;
+    }
+
+    .main-menu {
+      width: 100%;
+
+      .list-group-item {
+
+        .submenu-wrap {
+          position: static;
+          left    : 0;
+          opacity : 1;
+          width   : 100%;
+        }
+
+        li {
+          background-color: #4e638e !important;
+        }
+
+        li {
+          color           : #fff;
+          background-color: #435882;
+
+        }
+      }
+    }
+
+    &.mobile-menu-open {
+      z-index: 99999;
+      width  : 300px;
+      opacity: 1;
+    }
+  }
+}

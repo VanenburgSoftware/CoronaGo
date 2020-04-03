@@ -1,0 +1,20 @@
+<div class="detail-container detailcontainer">
+	<div class="page-header-part">
+		<div class="detail-page-header">
+			<span class="detail-page-header-label">{{pagename | translate}}</span>
+						<div class="float-right">
+				<app-vs-actionbar class="row" [actionbarConfig]="workflowActionBarconf" (onBtnClick)="buttonAction($event)"
+				(initComplete)="workflowActionBarInitComplete($event)"></app-vs-actionbar>
+			</div>
+		</div>
+	<div class="detail-page-actionbar">
+		<app-vs-actionbar class="row" [actionbarConfig]="actionBarconf" (onBtnClick)="buttonAction($event)"
+		(initComplete)="actionBarInitComplete($event)"></app-vs-actionbar>
+	</div>
+	</div>
+	<div class="detail-page-content  application-user">
+		<div class="detail-page-form">
+			<app-vs-form [formConfig]="formConfig" [formData]="data" [formModalChange]="dataChanged"></app-vs-form>
+		</div>
+	</div>
+</div>

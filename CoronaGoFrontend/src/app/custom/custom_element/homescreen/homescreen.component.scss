@@ -1,0 +1,219 @@
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "./mixins";
+@import "./variables";
+
+.home-screen {
+  height: 100%;
+  .header {
+    height: 30vh;
+    background-image: url("../../../../assets/images/corona_start.png");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+  }
+
+  .center-text {
+    height: 20vh;
+    text-align: center;
+    padding-top: 30px;
+
+    .patient-info {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 5px 15px;
+      width: auto;
+      display: inline-block;
+      font-size: 18px;
+      background-color: #f2f2f2;
+      border-radius: 6px;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    ul {
+      height: 30vh;
+      padding-top: 30px;
+      padding-inline-start: unset;
+      list-style-type: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      li.tile {
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        width: 150px;
+        height: 100px;
+        background-color: rgb(110, 105, 234);
+        border-radius: 10px;
+        color: #fff;
+        word-wrap: break-word;
+
+        &.risk {
+          background-image: linear-gradient(to right bottom, rgba(245, 45, 92, 0.8), rgba(238, 11, 53, 0.8)),
+            url("../../../../assets/images/Start.png");
+        }
+
+        &.resources {
+          background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+            url("../../../../assets/images/chain.jpg");
+
+          .tile-text {
+            margin-top: 25%;
+          }
+        }
+
+        &.corona-tracker {
+          background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+            url("../../../../assets/images/corona.png");
+        }
+
+        &.patient-info {
+          background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+            url("../../../../assets/images/eye.jpg");
+        }
+
+        .tile-text {
+          width: 80%;
+          margin: auto;
+          margin-top: 15%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.call911 {
+  display: none;
+}
+
+.confirm-call {
+  display: none;
+}
+
+@include media-breakpoint-down(md) {
+  .call911 {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    margin-top: -25px;
+
+    span {
+      display: inline-block;
+      background: red;
+      color: #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+    }
+  }
+
+  .confirm-call {
+    position: absolute;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    background: red;
+    display: fle;
+    padding: 20px;
+    top: 10%;
+    left: calc(50% - 100px);
+    color: #fff;
+
+    .close-call {
+      position: absolute;
+      right: -7px;
+      top: -7px;
+      background: black;
+      padding: 5px 7px;
+      border-radius: 100%;
+    }
+
+    span {
+      display: block;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      font-weight: bold;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .header {
+    height: 25vh !important;
+  }
+  .center-text {
+    .status {
+      width: 70%;
+      display: inline-block;
+    }
+  }
+  ul {
+    padding-top: 0px !important;
+    height: 35vh;
+    padding-inline-start: unset;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    li.tile {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: 40%;
+      height: 100px;
+      background-color: rgb(110, 105, 234);
+      border-radius: 10px;
+      color: #fff;
+      word-wrap: break-word;
+
+      &.risk {
+        background-image: linear-gradient(to right bottom, rgba(245, 45, 92, 0.8), rgba(238, 11, 53, 0.8)),
+          url("../../../../assets/images/Start.png");
+      }
+
+      &.resources {
+        background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+          url("../../../../assets/images/chain.jpg");
+
+        .tile-text {
+          margin-top: 25%;
+        }
+      }
+
+      &.corona-tracker {
+        background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+          url("../../../../assets/images/corona.png");
+      }
+
+      &.patient-info {
+        background-image: linear-gradient(to right bottom, rgba(102, 100, 230, 0.6), rgba(102, 100, 230, 0.6)),
+          url("../../../../assets/images/eye.jpg");
+      }
+
+      .tile-text {
+        width: 80%;
+        margin: auto;
+        margin-top: 15%;
+        text-align: center;
+      }
+    }
+  }
+}

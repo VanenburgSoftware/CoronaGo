@@ -1,0 +1,37 @@
+<div class="row grid-search">
+    <div class="col global-search">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text show-advanced"
+                    [ngClass]="{'active': this.showAdvancedSearch || this.search}" (click)="toggleAdvancedSearch()"><i
+                        class="fa fa-search"></i><i class="fa fa-caret-down"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Search" (keydown)="onKeydown($event)" #globalSearch />
+            <div class="input-group-append">
+
+                <span class="input-group-text clear-filter" (click)="clearAllFilters()">
+                    <i class="fa fa-filter"></i>
+                    <i class="fa fa-times"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="advanced-search" *ngIf="showAdvancedSearch && searchconfig?.advSearch?.length">
+        <h5 class="pl-3 pr-3 pt-0 adv-search-header">Advanced Search</h5>
+        <app-vs-form [formConfig]="searchFormConfig" [formData]="data" [formModalChange]="dataChanged"></app-vs-form>
+        <div class="row search-actions">
+            <div class="col">
+                <button class="btn btn-secondary btn-sm" (click)="clearSearch()" [translate]="'CLEAR_FILTER'">Clear
+                    Filter</button>
+            </div>
+            <div class="col text-right">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="cancelSearch()"
+                        [translate]="'CANCEL'">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="searchGrid()"
+                        [translate]="'SEARCH'">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

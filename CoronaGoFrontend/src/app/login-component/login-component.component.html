@@ -1,0 +1,37 @@
+<div class="row login-screen">
+  <div class="row login-screen-inner">
+    <div class="col-12">&nbsp;</div>
+    <div class="col-12 attainx-logo">
+      <img src="../../assets/images/attainx-logo.png" alt="AttainX" height="50px" />
+    </div>
+    <div class="col-12 covifi-logo">
+      <img src="../../assets/images/covifi-logo.png" alt="CoViFi" height="50px" />
+    </div>
+    <div class="col-12 google-login">
+      <img src="../../assets/images/google-login.png" alt="Login with Google" width="100%"
+        (click)="loginWithGoogle()" />
+    </div>
+    <div class="col-12 login-separator">
+      <i></i>
+      <span>OR</span>
+    </div>
+    <div class="col-12 non-google-login">
+      <span class="login-error" *ngIf="errorMsg">{{errorMsg}}</span>
+      <form>
+        <div class="form-group">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #email
+            (keydown)='userEditing()' placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter OTP" #otp
+            (keydown)='userEditing()' />
+        </div>
+        <button type="button" class="btn btn-primary" *ngIf="!hasOTP" (click)="getOTP()">Get OTP</button>
+        <button type="button" class="btn btn-primary" *ngIf="hasOTP" (click)="loginUser()">Login</button>
+      </form>
+    </div>
+    <div class="col-12 terms-and-conditions">
+      <span>By continuing, you agree to our terms and conditions</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="card rounded-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col"
+                *ngFor="let number of columnNumbers">
+                <div *ngFor="let option of columnsAndValueMap.get(number)">
+                    <div class="np-checkbox"
+                        [ngClass]="{ 'np-checkbox--disabled': disableOptions === true }">
+                        <input type="checkbox" 
+                                class="np-checkbox__native-control" 
+                                id="{{option[id]}}"
+                                [attr.disabled]="disableOptions === true ? '' : null" 
+                                [checked]="optionsCheckedMap.get(option)" 
+                                (click)="checkboxAction(option, $event)"/>
+                        <div class="np-checkbox__background">
+                            <svg class="np-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="np-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <label for="{{option[id]}}">{{option[label]}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

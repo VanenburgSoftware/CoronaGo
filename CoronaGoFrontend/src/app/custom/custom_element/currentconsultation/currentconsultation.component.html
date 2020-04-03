@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12">
+        <h5>Current Consultation</h5>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" class="form-control" id="doctorName" #doctorName value="" disabled>
+                </div>
+            </div>
+            <!-- <div class=" col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Meeting Id</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        #meetingId value="" disabled>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="meetingDate">Meeting Date</label>
+                    <input type="date" class="form-control" id="meetingDate" aria-describedby="emailHelp" #meetingDate
+                        (change)="handleDateChange($event)" [disabled]="checkIfDisabled()" [attr.min]="getMinDate()">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="meetingTime">Meeting Time</label>
+                    <input type="text" class="form-control" id="meetingTime" #meetingTime disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Meeting Link</label>
+            <!-- <input type="text" class="form-control" id="meetinglink" aria-describedby="emailHelp" disabled #meetingUrl
+                value=""> -->
+            <span class="form-control" *ngIf="!hasMeetingUrl">&nbsp;</span>    
+            <a class="form-control" href="" #meetingUrl target="_blank" *ngIf="hasMeetingUrl"></a>
+        </div>
+        <div class="col-12 p-0">
+            <app-vs-scheduler (selectedSlots)="selectedTimeSlots($event)" [blockedSlots]="blockedSlots"
+                *ngIf="meetingDate.value" [meetingDate]="meetingDate.value"></app-vs-scheduler>
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Doctor Notes</label>
+            <textarea class="form-control" rows="8" #doctorNotes (change)="handleDocNotesChange($event)"></textarea>
+        </div>
+    </div>
+    <div class="col-12 schedule-consultation-wrap">
+        <button type="button" class="btn btn-primary schedule-consultation" (click)="scheduleConsultation()"
+            *ngIf="!data.meetingUrl">Schedule
+            Consultation</button>
+    </div>
+</div>

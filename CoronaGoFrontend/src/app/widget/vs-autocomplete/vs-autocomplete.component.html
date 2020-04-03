@@ -1,0 +1,31 @@
+<div class="vs-autocomplete">
+  <div class="single-selection" *ngIf="!isMultiple" >
+    <input type="text" class="form-control" [(ngModel)]="selectedValue" [formControl]="queryField" (focus)="handleFocus($event)" [attr.disabled]="disabled"
+    [placeholder]="placeholder || ''"
+    />
+    <i class="fa fa-caret-down"></i>
+  </div>
+  <div class="multi-select" *ngIf="isMultiple" [ngClass]="{'disabled': disabled}">
+    <div class="form-control">
+      <ul class="list-inline">
+        <li class="placeholder" *ngIf="!selectedValues || !selectedValues.length">{{placeholder}}</li>
+        <li *ngFor="let item of selectedValues">{{formatDisplayName(item)}} <i class="fa fa-times" (click)="!disabled && removeItem(item)"></i></li>
+        <li class="multi-select-input">
+          <input type="text" [formControl]="queryField" [(ngModel)]="multiSelectedValue" (focus)="handleFocus($event)" *ngIf="url || options" [attr.disabled]="disabled" />
+          <input type="text" [formControl]="queryField" [(ngModel)]="multiSelectedValue" (keydown.enter)="updateNormalField($event)" *ngIf="!url && !options"
+          [ngStyle]="{width: (multiSelectedValue?.length + 2) + 'ch'}"
+          [attr.disabled]="disabled"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="suggestion" *ngIf="showDropdown" (scroll)="handleScroll($event)">
+    <ul class="list">
+      <li *ngFor="let item of results" (click)="selectItem(item)">
+        <input type="checkbox" class="check-box custom" (click)="handleCheckboxChange($event, item)" *ngIf="hasCheckbox" [checked]="isChecked(item)" [attr.disabled]="disabled" />
+        <span>{{formatDisplayName(item)}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

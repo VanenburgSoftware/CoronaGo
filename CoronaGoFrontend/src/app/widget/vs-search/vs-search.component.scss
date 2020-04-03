@@ -1,0 +1,120 @@
+.grid-search {
+  .global-search {
+    position: relative;
+    z-index : 999;
+
+    .input-group-prepend {
+      .show-advanced {
+        background-color          : #f5f5f5;
+        border-right              : none;
+        border-top-right-radius   : 0px;
+        border-bottom-right-radius: 0px;
+      }
+    }
+
+    .form-control {
+      /* border                : none;
+      border-bottom            : 1px solid #666;
+      border-radius            : 0px; */
+      border                   : 1px solid #ccc !important;
+      border-radius            : 4px 0px 0px 4px;
+      background-color         : #f5f5f5;
+      border-left              : none !important;
+      border-top-left-radius   : 0px;
+      border-bottom-left-radius: 0px;
+      font-size                : 12px;
+      min-width                : 200px;
+      border-right             : none !important;
+
+      &::placeholder {
+        font-size: 12px;
+      }
+
+      &:focus {
+        background-color: transparent;
+        outline         : none;
+      }
+    }
+
+    .input-group-append {
+      .show-advanced {
+        cursor       : pointer;
+        position     : absolute;
+        left         : -30px;
+        border       : none;
+        border-bottom: 1px solid #666;
+        bottom       : 0;
+
+        &:hover {
+          background-color: #cccccc;
+        }
+
+        &.active {
+          background-color: #cccccc;
+        }
+      }
+
+      .clear-filter {
+        cursor     : pointer;
+        cursor     : pointer;
+        border-left: none;
+        background : #f5f5f5;
+        // display : none;
+
+        &:hover {
+          background-color: #cccccc;
+        }
+
+        .fa-times {
+          font-size    : 10px;
+          margin-bottom: -5px;
+          margin-left  : -4px;
+        }
+      }
+    }
+  }
+
+  .advanced-search {
+    position      : absolute;
+    background    : #fff;
+    width         : 100%;
+    min-width     : 600px;
+    top           : 6px;
+    right         : 68px;
+    z-index       : 99;
+    border        : 1px solid #cccccc;
+    border-radius : 5px;
+    box-shadow    : 0px 5px 5px #ccc;
+    padding-bottom: 10px;
+
+    .adv-search-header {
+      border-bottom: 1px solid #cccccc;
+      height       : 34px;
+      line-height  : 34px;
+    }
+
+    .search-actions {
+      margin-right: 0px;
+      margin-left : 0px;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .grid-search {
+    .global-search {
+      .input-group-append {
+        .show-advanced {
+          position: static;
+        }
+      }
+    }
+
+    .advanced-search {
+      min-width: 300px;
+      left     : 0px;
+      top      : 30px;
+      z-index  : 9999;
+    }
+  }
+}

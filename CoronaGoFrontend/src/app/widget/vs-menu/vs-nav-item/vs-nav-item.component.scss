@@ -1,0 +1,177 @@
+$icon-size: 16px;
+/* colors */
+
+$firstLevelMenuColor: #e6e8f5;
+$firstLevelActiveMenuColor: #e6e8f5;
+$secondLevelMenuColor: $firstLevelMenuColor;
+$secondLevelActiveMenuColor: #e6e8f5;
+$thirdLevelMenuColor: #e6e8f5;
+$thirdLevelActiveMenuColor: #dcf7df;
+$borderColor: #164767;
+$activeBackgroundColor: #1e405b;
+
+/* Font Sizes */
+
+$firstLevelMenuFontSize: 17px;
+$secondLevelMenuFontSize: 14px;
+$thirdLevelMenuFontSize: 12px;
+$firstLevelCarotIconFontSize: 16px;
+$secondLevelCarotIconFontSize: 14px;
+$thirdLevelCarotIconFontSize: 12px;
+$firstLevelMenuIconFontSize: 20px;
+$secondLevelMenuIconFontSize: 16px;
+$thirdLevelMenuIconFontSize: 12px;
+$firstLevelLabelMargin: 10px;
+$secondLevelLabelMargin: 10px;
+$thirdLevelLabelMargin: 8px;
+$secondLevelPLeft: 54px;
+$thirdLevelPLeft: 85px;
+$firstLevelLabelMaxWidth: 220px;
+$secondLevelLabelMaxWidth: 185px;
+$thirdLevelLabelMaxWidth: 160px;
+
+li.nav-item.has-treeview {
+    max-width: 100%;
+    letter-spacing: 0.1px;
+    border-bottom: 1px solid #1f5580;
+    .separator {
+        border-top: 2px solid #dadada;
+        margin: 1px 0px;
+    }
+    .nav-link {
+        padding: 3px 12px 3px 20px !important;
+        padding: 0px 15px;
+        margin: 0px;
+        min-height: 44px;
+        .invisible-icon {
+            visibility: hidden;
+        }
+        .icon-font {
+            box-sizing: border-box;
+            width: 20px;
+            text-align: center;
+        }
+        .nav-label {
+            font-family: montserrat;
+            letter-spacing: 0.7px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .icon-from-disk {
+            background-size: contain;
+            background-origin: content-box;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 2px;
+            width: 20px;
+            display: block;
+        }
+    }
+    >.nav-treeview.collapse {
+        .has-treeview {
+            border-bottom: none;
+        }
+    }
+    .flyout-menu-caret {
+        transition: -webkit-transform ease-in-out 0.3s;
+        transition: transform ease-in-out 0.3s;
+        transition: transform ease-in-out 0.3s, -webkit-transform ease-in-out 0.3s;
+        transition: transform ease-in-out 0.3s, -webkit-transform ease-in-out 0.3s;
+        font-weight: bold;
+        padding: 0px 5px;
+        font-size: $firstLevelCarotIconFontSize;
+    }
+    .active {
+        .flyout-menu-caret {
+            transform: rotate(-180deg);
+            transition: transform 500ms ease-in-out;
+        }
+    }
+    &.first-level-menu {
+        .flyout-menu-caret {
+            font-size: $firstLevelCarotIconFontSize !important;
+        }
+        .nav-link {
+            color: $firstLevelMenuColor;
+            font-size: $firstLevelMenuFontSize;
+            .icon-font {
+                font-size: $firstLevelMenuIconFontSize;
+            }
+            .material-icons {
+                font-size: $firstLevelMenuIconFontSize;
+            }
+            .nav-label {
+                margin-left: $firstLevelLabelMargin;
+                max-width: $firstLevelLabelMaxWidth;
+            }
+            .icon-from-disk {
+                height: $firstLevelMenuIconFontSize;
+                padding: 2px;
+            }
+            &.active:last-child {
+                color: $firstLevelActiveMenuColor;
+                background-color: #009688;
+                .icon-font {
+                    color: $firstLevelActiveMenuColor;
+                    margin-left: -3px;
+                }
+            }
+            &:hover {
+                background-color: #3d6561;
+            }
+        }
+    }
+    &.second-level-menu {
+        .nav-link {
+            color: $secondLevelMenuColor;
+            font-size: $secondLevelMenuFontSize;
+            padding-left: $secondLevelPLeft !important;
+            .icon-font {
+                font-size: $secondLevelMenuIconFontSize;
+            }
+            .material-icons {
+                font-size: $secondLevelMenuIconFontSize;
+            }
+            .nav-label {
+                margin-left: $secondLevelLabelMargin;
+                max-width: $secondLevelLabelMaxWidth;
+            }
+            .icon-from-disk {
+                height: $secondLevelMenuIconFontSize;
+                padding: 3px;
+            }
+            &.active {
+                color: $secondLevelActiveMenuColor;
+                .icon-font {
+                    color: $secondLevelActiveMenuColor;
+                }
+            }
+        }
+    }
+    &.third-level-menu {
+        .nav-link {
+            color: $thirdLevelMenuColor;
+            font-size: $thirdLevelMenuFontSize;
+            padding-left: $thirdLevelPLeft !important;
+            .icon-font {
+                font-size: $thirdLevelMenuIconFontSize;
+            }
+            .material-icons {
+                font-size: $thirdLevelMenuIconFontSize;
+            }
+            .nav-label {
+                margin-left: $thirdLevelLabelMargin;
+                max-width: $thirdLevelLabelMaxWidth;
+            }
+            .icon-from-disk {
+                height: $thirdLevelMenuIconFontSize;
+                padding: 4px;
+            }
+            &.active:last-child {
+                color: $firstLevelActiveMenuColor;
+                background-color: #009688;
+            }
+        }
+    }
+}

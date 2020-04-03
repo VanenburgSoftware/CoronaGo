@@ -1,0 +1,25 @@
+<div>
+	<ng-container [ngSwitch]="component">
+		<ng-template [ngSwitchCase]="'resources'">
+			<app-resources></app-resources>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'landingpage'">
+			<app-landingpage></app-landingpage>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'homescreen'">
+			<app-homescreen></app-homescreen>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'heatmap'">
+			<app-heatmap></app-heatmap>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'stocklevelbyhospital'">
+			<app-stocklevelbyhospital></app-stocklevelbyhospital>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'coronatracker'">
+			<app-coronatracker></app-coronatracker>
+		</ng-template>
+		<ng-template [ngSwitchCase]="'currentconsultation'">
+			<app-currentconsultation [cForm]="currentForm"></app-currentconsultation>
+		</ng-template>
+	</ng-container>
+</div>

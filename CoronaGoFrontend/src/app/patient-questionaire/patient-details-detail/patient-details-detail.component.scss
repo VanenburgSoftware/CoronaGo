@@ -1,0 +1,47 @@
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "./mixins";
+@import "./variables";
+.high-alert {
+  background-color: rgb(245, 243, 243);
+  font-size: 12px;
+  .modal-body {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    ul {
+      padding-inline-start: unset;
+      li {
+        list-style-type: none;
+        background-color: #fff;
+        padding: 10px;
+        border-bottom: 1px solid rgb(245, 243, 243);
+      }
+    }
+  }
+  .modal-footer {
+    padding-bottom: 0;
+    padding-top: 6px;
+  }
+}
+@include media-breakpoint-down(xs) {
+  .modal-high-alert {
+    width: 90%;
+  }
+  .high-alert {
+    background-color: rgb(245, 243, 243);
+    font-size: 12px;
+    .modal-body {
+      padding-left: 0;
+      padding-right: 0;
+      ul {
+        padding-inline-start: unset;
+        li {
+          list-style-type: none;
+          background-color: #fff;
+          padding: 10px;
+          border-bottom: 1px solid rgb(245, 243, 243);
+        }
+      }
+    }
+  }
+}

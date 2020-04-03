@@ -1,0 +1,18 @@
+<div class="landing-page">
+<div class="form-group has-search">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" class="form-control" placeholder="Search for care , doctors,etc.">
+  </div>
+<ul>
+    <li *ngFor="let hospital of hospitals | search : searchText" class="hospital-info"
+    routerLink="/homescreen/homescreendetail"
+    >
+        <div class="icon col-xs-2"> {{hospital.image}}</div>
+        <div class="hospital col-xs-9">
+            <div class="hospital-name">{{hospital.hospital_name}}</div>
+             <div class="place">{{hospital.place}}</div>             
+        </div>
+        <div class="right-arrow col-xs-1"> <i class="fa fa-angle-right"></i></div>       
+    </li>
+</ul>
+</div>

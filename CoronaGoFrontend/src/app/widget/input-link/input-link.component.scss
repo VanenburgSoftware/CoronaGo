@@ -1,0 +1,56 @@
+.link-input-wrapper {
+  position: relative;
+  .form-control {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    font-size: 13px;
+    height: 30px;
+  }
+  textarea.form-control{
+    height: 60px;
+    overflow: auto;
+    resize: none;
+  }
+  .error-border {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+  .error-div {
+    position: absolute;
+    height: 15px;
+    .error {
+      right: 0;
+      font-style: normal;
+      font-size: 11px;
+    }
+  }
+  .display-link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 30px;
+    a {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 13px;
+      line-height: 26px;
+      font-family: Montserrat;
+    }
+    &.multi-link{
+      height: 60px;
+      overflow: auto;
+      a{
+        line-height: normal;
+      }
+    }
+  }
+  &.disabled{
+    background-color: #e9ecef;
+    .form-control{
+      background-color: #e9ecef;
+    }
+  }
+  .btn{
+    height: 30px;
+    border-color: #ced4da;
+  }
+}
