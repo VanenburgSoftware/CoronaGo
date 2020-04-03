@@ -13,7 +13,7 @@
 	},
 	{
 		"key": "attachment_bucket_name",
-		"value": "vg-eva-uploads"
+		"value": "YOUR_APP_SPECIFIC_BUCKET_NAME"
 	},
 	{
 		"key": "task_base_url",
@@ -21,11 +21,11 @@
 	},
 	{
 		"key": "consumer_key",
-		"value": "VHvmRmIZC8OycG5mlj90a5g52xxGWGlP"
+		"value": "YOUR_GOTO_MEETING_ACCOUNT_CONSUMER_KEY"
 	},
 	{
 		"key": "consumer_secret",
-		"value": "HbV3GEb2nSAAiaTR"
+		"value": "YOUR_GOTO_MEETING_ACCOUNT_CONSUMER_SECRET"
 	},
 	{
 		"key": "template_folder",
@@ -33,26 +33,26 @@
 	},
 	{
 		"key": "bigquery_dataset",
-		"value": "TestBQ"
+		"value": "YOUR_APP_BIGQUERY_DATASET"
 	},
 	{
 		"key": "hospital_id",
-		"value": "496b97fb-a4f4-4f33-ba15-7891db3eb7c8"
+		"value": "YOUR_DEFAULT_HOSPITAL_ID"
 	},
 	{
 		"key": "hospital_name",
-		"value": "EVA Healthcare"
+		"value": "YOUR_DEFAULT_HOSPITAL_NAME"
 	},
 	{
 		"key": "default_gotomeeting_user_name",
-		"value": "santony@vanenburgsoftware.com"
+		"value": "YOUR_DEFAULT_GOTOMEETING_USER_NAME"
 	},
 	{
 		"key": "default_gotomeeting_password",
-		"value": "Joinmeeting@123"
+		"value": "YOUR_DEFAULT_GOTOMEETING_PASSWORD"
 	},
 	{
 		"key": "tech_mail_id",
-		"value": "smurugesan@vanenburgsoftware.com"
+		"value": "YOUR_TECHNICAL_MAIL_ID"
 	}
 ]
