@@ -19,28 +19,28 @@ If your project id is test-app, then you have to mention context param name as t
 If it is for clould storage (now we use the same credential for both), then the context param name should be test-app-files_auth_file_json.
 
 Menu information and the role information are present inside the application as menu.json & role.json.Upload it in the configuraion bucket and use the following url to load menu & role into the application.
-YOUR_PROJECT_ID/rest/configuration/load/menu?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_MENU_FILE
-YOUR_PROJECT_ID/rest/configuration/load/role?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_ROLE_FILE
+APP_URL/rest/configuration/load/menu?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_MENU_FILE
+APP_URL/rest/configuration/load/role?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_ROLE_FILE
 
 Configuration.json contains rest of the configuration info needed for the application and it should be uploaded into the congiguration bucket and by using the following url, it can be loaded into the application.
-YOUR_PROJECT_ID/rest/configuration/load/config?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_CONFIG_FILE
+APP_URL/rest/configuration/load/config?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_THE_CONFIG_FILE
 
-### GOTOMEETING
+###### GOTOMEETING
 GOTOMEETING is used by this application.
 Create a GOTOMEETING account for urself and configure the respective consumer key,consumer secret and default username & password into the configuration.json file.
 
-### BigQuery
+###### BigQuery
 This app uses Google BigQuery
 Create a dataset in the Google BigQuery and configure the dataset name in configuration.json
 
-### Hospital & Items
+###### Hospital & Items
 Hospital and Stock items are available in hospitals.json & items.json respectively.
 Use the following url to load hospitals & items into firestore
-YOUR_PROJECT_ID/rest/configuration/load/hospitals
-YOUR_PROJECT_ID/rest/configuration/load/items
+APP_URL/rest/configuration/load/hospitals
+APP_URL/rest/configuration/load/items
 Configure the default hospital id and name in the configuration.json
 
-### Attachment Bucket
+###### Attachment Bucket
 Create and configure the name of the bucket to be used for uploading the GOTOMEETING recording files in the configuration.json
 
 ##### Demo
