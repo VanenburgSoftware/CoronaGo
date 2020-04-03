@@ -5,15 +5,15 @@
 	</welcome-file-list>
 	<context-param>
 		<param-name>config_bucket</param-name>
-		<param-value>vg-eva-configuration</param-value>
+		<param-value>YOUR_CONFIG_BUCKET_NAME</param-value>
 	</context-param>
 	<context-param>
-		<param-name>vg-eva_db_auth_file_json</param-name>
-		<param-value>vg-eva-firebase-adminsdk-ri0ch-c7039bdd4b.json</param-value>
+		<param-name>YOUR_PROJECT_ID_db_auth_file_json</param-name>
+		<param-value>YOUR_DB_AUTH_FILE_JSON_NAME</param-value>
 	</context-param>
 	<context-param>
-		<param-name>vg-eva_files_auth_file_json</param-name>
-		<param-value>vg-eva-firebase-adminsdk-ri0ch-c7039bdd4b.json</param-value>
+		<param-name>YOUR_PROJECT_ID_files_auth_file_json</param-name>
+		<param-value>YOUR_STORAGE_AUTH_FILE_JSON_NAME</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.coronago.listener.ApplicationListener</listener-class>
