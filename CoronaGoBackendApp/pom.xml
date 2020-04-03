@@ -74,52 +74,10 @@
 			<artifactId>rome</artifactId>
 			<version>1.0</version>
 		</dependency>
-	<!--	<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-bigquery</artifactId>
-			<version>1.62.0</version>
-		</dependency>-->
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
 			<version>2.1.7</version>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>development</id>
-			<properties>
-				<app-name>vg-eva</app-name>
-				<app-version>1</app-version>
-				<app-configuration>development_configuration.json</app-configuration>
-			</properties>
-		</profile>
-		<profile>
-			<id>acceptance</id>
-			<properties>
-				<app-name>vg-eva</app-name>
-				<app-version>1</app-version>
-				<app-configuration>acceptance_configuration.json</app-configuration>
-			</properties>
-		</profile>
-		<profile>
-			<id>production</id>
-			<properties>
-				<app-name>vg-eva</app-name>
-				<app-version>1</app-version>
-				<app-configuration>production_configuration.json</app-configuration>
-			</properties>
-		</profile>
-		<profile>
-			<id>default</id>
-			<properties>
-				<app-name>vg-eva</app-name>
-				<app-version>1</app-version>
-				<app-configuration>development_configuration.json</app-configuration>
-			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-	</profiles>
 </project>
