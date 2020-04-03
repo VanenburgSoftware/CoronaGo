@@ -1,0 +1,25 @@
+[{
+	"roleName": "Development Administrator",
+	"roleId": 6,
+	"menus": [12, 13, 14, 15, 17, 18, 10, 11, 19, 24]
+}, {
+	"roleName": "Patient",
+	"roleId": 3,
+	"menus": [12, 13]
+}, {
+	"roleName": "Doctor",
+	"roleId": 2,
+	"menus": [12, 13, 14, 15, 17]
+}, {
+	"roleName": "Hospital Admin",
+	"roleId": 4,
+	"menus": [14, 15, 17, 18]
+}, {
+	"roleName": "App Admin",
+	"roleId": 1,
+	"menus": [10, 11, 12, 13, 14, 15, 17, 18, 19, 24]
+}, {
+	"roleName": "State County Login",
+	"roleId": 5,
+	"menus": [18, 19, 24]
+}]

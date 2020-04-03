@@ -1,0 +1,370 @@
+{
+  "doctoractivitylogs": {
+    "post": {
+      "/doctoractivitylogs/datatable": [
+        "DevAdmin"
+      ],
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "stockinhospitals": {
+    "post": {
+      "/stockinhospitals/datatable": [
+        "DevAdmin"
+      ],
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "homescreens": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "coronatrackers": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "stocklevelbyitems": {
+    "post": {
+      "/stocklevelbyitems/datatable": [
+        "DevAdmin"
+      ],
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "patientquestionaires": {
+    "post": {
+      "/allpatientsnotscheduleds/datatable": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/downloadreport/{id}": [
+        "DevAdmin"
+      ],
+      "/row/allpatientsscheduled/needsconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/scheduleconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/mypatientsscheduleds/datatable": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/doweeklymonitoring/{id}": [
+        "DevAdmin"
+      ],
+      "/": [
+        "DevAdmin"
+      ],
+      "/patientquestionaires/datatable": [
+        "DevAdmin"
+      ],
+      "/form/allpatientsscheduled/needsconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/needsconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/calculateriskscore/{id}": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/prescribetest/{id}": [
+        "DevAdmin"
+      ],
+      "/form/mypatientsscheduled/needsconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/allpatientsscheduleds/datatable": [
+        "DevAdmin"
+      ],
+      "/row/mypatientsscheduled/needsconsultation/{id}": [
+        "DevAdmin"
+      ],
+      "/mypatientsnotscheduleds/datatable": [
+        "DevAdmin"
+      ],
+      "/form/patientdetails/consultationnotrequired/{id}": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "resources": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "landingpages": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "heatmaps": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "countystatelogins": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "meetings": {
+    "post": {
+      "/meetings/datatable": [
+        "DevAdmin"
+      ],
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "logins": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "stocklevelbyhospitals": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  },
+  "patientinformations": {
+    "post": {
+      "/": [
+        "DevAdmin"
+      ]
+    },
+    "get": {
+      "/sid/{sid}": [
+        "DevAdmin"
+      ]
+    },
+    "delete": {
+      "/{ids}": [
+        "DevAdmin"
+      ]
+    },
+    "put": {
+      "/": [
+        "DevAdmin"
+      ]
+    }
+  }
+}

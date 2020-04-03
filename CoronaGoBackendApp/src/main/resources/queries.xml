@@ -1,0 +1,45 @@
+<queries>
+	<query name="stock_info_by_hospital">
+		<![CDATA[
+		WITH
+latest_stock AS (
+ SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY hospitalId, itemId ORDER BY sync_time DESC)r FROM :??DATASET.Stock )
+ WHERE r =1 ),
+latest_hospital AS (
+SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY hospitalId ORDER BY sync_time DESC)r FROM :??DATASET.Hospital )
+ WHERE r =1 ),
+latest_item AS (
+SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY itemId ORDER BY sync_time DESC)r FROM :??DATASET.Item )
+ WHERE r =1)
+SELECT Item.itemName, Hospital.hospitalName, Stock.stockInHand, Stock.stockRequired FROM latest_stock Stock 
+JOIN latest_hospital Hospital ON Stock.hospitalId = Hospital.hospitalId
+JOIN latest_item Item ON Stock.itemId = Item.itemId :??FILTER_CONDITION
+		]]>
+	</query>
+	<query name="stock_info_by_item">
+		<![CDATA[
+		WITH
+latest_stock AS (
+ SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY hospitalId, itemId ORDER BY sync_time DESC)r FROM :??DATASET.Stock )
+ WHERE r =1 ),
+latest_hospital AS (
+SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY hospitalId ORDER BY sync_time DESC)r FROM :??DATASET.Hospital )
+ WHERE r =1 ),
+latest_item AS (
+SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY itemId ORDER BY sync_time DESC)r FROM :??DATASET.Item )
+ WHERE r =1)
+SELECT Item.itemName, Hospital.hospitalName, Stock.stockInHand, Stock.stockRequired FROM latest_stock Stock 
+JOIN latest_hospital Hospital ON Stock.hospitalId = Hospital.hospitalId
+JOIN latest_item Item ON Stock.itemId = Item.itemId :??FILTER_CONDITION
+		]]>
+	</query>
+	<query name="heat_map">
+	<![CDATA[
+		WITH
+	latest_Patient AS (
+	 SELECT    * EXCEPT(r)  FROM (SELECT  * EXCEPT(sync_time), ROW_NUMBER() OVER (PARTITION BY patientId ORDER BY sync_time DESC)r FROM :??DATASET.Patient)
+	 WHERE r =1 )
+	SELECT zipCode, count(patientId) as count FROM latest_Patient GROUP BY zipCode
+	]]>
+	</query>
+</queries>

@@ -29,6 +29,8 @@ APP_URL/rest/configuration/load/config?bucket=NAME_OF_THE_BUCKET&file=NAME_OF_TH
 GOTOMEETING is used by this application.
 Create a GOTOMEETING account for urself and configure the respective consumer key,consumer secret and default username & password into the configuration.json file.
 
+For each doctor,seperate GOTOMEETING account should be created and configured in AppUserPrivileges.Else we have to create one account which can be shared across all the doctors. But using this default account, parallel meeting can not be scheduled by doctors.
+
 ###### BigQuery
 This app uses Google BigQuery
 Create a dataset in the Google BigQuery and configure the dataset name in configuration.json
@@ -42,6 +44,9 @@ Configure the default hospital id and name in the configuration.json
 
 ###### Attachment Bucket
 Create and configure the name of the bucket to be used for uploading the GOTOMEETING recording files in the configuration.json
+
+###### Notification Mail
+Create a technical email id ,configure it in GAE Email Senders and add it in configuration.json that wil be used for sending notification mails from this application
 
 ##### Demo
 Please [click here for the demo.](https://1-0-dot-vg-eva.appspot.com/#/homescreen/homescreendetail)

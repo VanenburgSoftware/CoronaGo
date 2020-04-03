@@ -1,0 +1,58 @@
+[
+	{
+		"key": "menu_location_left",
+		"value": "true"
+	},
+	{
+		"key": "menu_sticky",
+		"value": "true"
+	},
+	{
+		"key": "environment",
+		"value": "dev"
+	},
+	{
+		"key": "attachment_bucket_name",
+		"value": "vg-eva-uploads"
+	},
+	{
+		"key": "task_base_url",
+		"value": "/rest/task/submit/{id}"
+	},
+	{
+		"key": "consumer_key",
+		"value": "VHvmRmIZC8OycG5mlj90a5g52xxGWGlP"
+	},
+	{
+		"key": "consumer_secret",
+		"value": "HbV3GEb2nSAAiaTR"
+	},
+	{
+		"key": "template_folder",
+		"value": "/ftl_templates"
+	},
+	{
+		"key": "bigquery_dataset",
+		"value": "TestBQ"
+	},
+	{
+		"key": "hospital_id",
+		"value": "496b97fb-a4f4-4f33-ba15-7891db3eb7c8"
+	},
+	{
+		"key": "hospital_name",
+		"value": "EVA Healthcare"
+	},
+	{
+		"key": "default_gotomeeting_user_name",
+		"value": "santony@vanenburgsoftware.com"
+	},
+	{
+		"key": "default_gotomeeting_password",
+		"value": "Joinmeeting@123"
+	},
+	{
+		"key": "tech_mail_id",
+		"value": "smurugesan@vanenburgsoftware.com"
+	}
+]
