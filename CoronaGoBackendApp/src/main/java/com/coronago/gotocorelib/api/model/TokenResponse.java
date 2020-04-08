@@ -1,13 +1,3 @@
-/*
- * © 2017 LogMeIn, Inc. All Rights Reserved.
- * All rights reserved.
- *
- * This software is distributed under the terms and conditions of the
- * LogMeIn SDK License Agreement. Please see file LICENSE for details.
- *
- * Auto-generated file.
- */
-
 package com.coronago.gotocorelib.api.model;
 
 import com.coronago.gotomeeting.api.common.JsonUtil;
